@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "554782604801",
+    "project_id": "yuefenginterviewproject",
+    "storage_bucket": "yuefenginterviewproject.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554782604801:android:461610e295da2294300a00",
+        "android_client_info": {
+          "package_name": "com.example.yuefenginterviewproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbTEmhzIVIcODu3tFOIeAJLB75TgV-krc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
