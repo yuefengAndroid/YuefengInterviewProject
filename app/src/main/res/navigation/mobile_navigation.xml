@@ -22,4 +22,17 @@
         android:name="com.example.yuefenginterviewproject.ui.popularactivities.popularactivitiesFragment"
         android:label="@string/title_popularActivities"
         tools:layout="@layout/fragment_popularactivities" />
+
+    <fragment
+        android:id="@+id/navigation_tvHot"
+        android:name="com.example.yuefenginterviewproject.ui.tvhot.TvHotFragment"
+        android:label="@string/title_tvHot"
+        tools:layout="@layout/fragment_tv_hot" />
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.example.yuefenginterviewproject.ui.cart.CartFragment"
+        android:label="@string/title_cart"
+        tools:layout="@layout/fragment_cart" />
+
 </navigation>

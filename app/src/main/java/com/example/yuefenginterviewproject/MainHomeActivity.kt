@@ -13,8 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.yuefenginterviewproject.data.model.MainHomeViewModel
 import com.example.yuefenginterviewproject.databinding.ActivityMainHomeBinding
 import com.example.yuefenginterviewproject.ui.bestsellers.bestsellersFragment
+import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.example.yuefenginterviewproject.ui.home.HomeFragment
+import com.example.yuefenginterviewproject.ui.member.MemberFragment
 import com.example.yuefenginterviewproject.ui.popularactivities.popularactivitiesFragment
+import com.example.yuefenginterviewproject.ui.tvhot.TvHotFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainHomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +36,7 @@ class MainHomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationI
             mainHomeMadel = mainModel
             lifecycleOwner = this@MainHomeActivity
             navView.setOnNavigationItemSelectedListener(this@MainHomeActivity)
+            navView.labelVisibilityMode = BottomNavigationView.LABEL_VISIBILITY_LABELED
         }
 
         mainModel.navId.observe(this, Observer {
@@ -58,6 +62,12 @@ class MainHomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationI
             }
             R.id.navigation_popularActivities -> {
                 openNavFrag("popularactivities", popularactivitiesFragment())
+            }
+            R.id.navigation_tvHot -> {
+                openNavFrag("tvHot", TvHotFragment())
+            }
+            R.id.navigation_cart -> {
+                openNavFrag("cart", CartFragment())
             }
 
         }
@@ -94,7 +104,7 @@ class MainHomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationI
                     continue
                 }
 
-                if (frag is HomeFragment || frag is bestsellersFragment || frag is popularactivitiesFragment) {
+                if (frag is HomeFragment || frag is bestsellersFragment || frag is popularactivitiesFragment || frag is TvHotFragment || frag is CartFragment || frag is MemberFragment) {
                     return false
                 }
 
