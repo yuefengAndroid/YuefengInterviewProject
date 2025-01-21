@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.yuefenginterviewproject.databinding.ActivityMainHomeBinding
@@ -42,17 +43,32 @@ class MainHomeActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 // 点击 Tab 时切换页面
                 binding.viewPager.setCurrentItem(tab.position, false)
+
+                val tabText = tab.customView?.findViewById<TextView>(R.id.tab_text)
+                tabText?.setTextColor(ContextCompat.getColor(this@MainHomeActivity, R.color.red)) // 设置红色
+
+                // 改变选中 Tab 的图标颜色为红色
+                val tabIcon = tab.customView?.findViewById<ImageView>(R.id.tab_icon)
+                tabIcon?.let {
+                    it.setColorFilter(ContextCompat.getColor(this@MainHomeActivity, R.color.red)) // 设置红色
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-                // No-op
+                val tabText = tab.customView?.findViewById<TextView>(R.id.tab_text)
+                tabText?.setTextColor(ContextCompat.getColor(this@MainHomeActivity, R.color.black)) // 设置黑色
+
+                val tabIcon = tab.customView?.findViewById<ImageView>(R.id.tab_icon)
+                tabIcon?.let {
+                    it.setColorFilter(ContextCompat.getColor(this@MainHomeActivity, R.color.black)) // 设置黑色
+                }
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
                 // No-op
             }
         })
-
+        setFirstTabRed()
     }
 
     private fun setupTabLayout() {
@@ -97,6 +113,20 @@ class MainHomeActivity : AppCompatActivity() {
         }
 
         return tabView
+    }
+
+    // 设置第一个 Tab 的文字颜色为红色
+    private fun setFirstTabRed() {
+        val firstTab = binding.tabLayout.getTabAt(0)
+        firstTab?.let {
+            val tabText = it.customView?.findViewById<TextView>(R.id.tab_text)
+            tabText?.setTextColor(ContextCompat.getColor(this, R.color.red)) // 设置红色
+
+            val tabIcon = it.customView?.findViewById<ImageView>(R.id.tab_icon)
+            tabIcon?.let { icon ->
+                icon.setColorFilter(ContextCompat.getColor(this, R.color.red)) // 设置红色
+            }
+        }
     }
 }
 
