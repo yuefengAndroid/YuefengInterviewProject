@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">仿東森購物</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">首頁</string>
+    <string name="title_bestsellers">熱銷榜</string>
+    <string name="title_popularActivities">熱門活動</string>
+    <string name="title_tvHot">TV熱播</string>
+    <string name="title_cart">購物車</string>
+    <string name="title_member">會員</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

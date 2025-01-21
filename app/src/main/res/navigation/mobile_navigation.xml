@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.yuefenginterviewproject.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_bestsellers"
+        android:name="com.example.yuefenginterviewproject.ui.bestsellers.bestsellersFragment"
+        android:label="@string/title_bestsellers"
+        tools:layout="@layout/fragment_bestsellers" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.yuefenginterviewproject.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_popularActivities"
+        android:name="com.example.yuefenginterviewproject.ui.popularactivities.popularactivitiesFragment"
+        android:label="@string/title_popularActivities"
+        tools:layout="@layout/fragment_popularactivities" />
 </navigation>
