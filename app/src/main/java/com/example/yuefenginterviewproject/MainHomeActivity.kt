@@ -1,139 +1,103 @@
 package com.example.yuefenginterviewproject
 
-import android.graphics.Color
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.yuefenginterviewproject.data.model.MainHomeViewModel
+import androidx.viewpager2.widget.ViewPager2
 import com.example.yuefenginterviewproject.databinding.ActivityMainHomeBinding
-import com.example.yuefenginterviewproject.ui.bestsellers.bestsellersFragment
-import com.example.yuefenginterviewproject.ui.cart.CartFragment
-import com.example.yuefenginterviewproject.ui.home.HomeFragment
-import com.example.yuefenginterviewproject.ui.member.MemberFragment
-import com.example.yuefenginterviewproject.ui.popularactivities.popularactivitiesFragment
-import com.example.yuefenginterviewproject.ui.tvhot.TvHotFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
-class MainHomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainHomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainHomeBinding
-    lateinit var mainModel: MainHomeViewModel
+    private lateinit var adapter: MainPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MyLog.setLogLevel(1)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main_home)
 
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main_home)
-        mainModel = ViewModelProvider(this)[MainHomeViewModel::class.java]
+        // 初始化 ViewPager2 和 TabLayout
+        setupViewPager()
+        setupTabLayout()
+    }
 
-        binding.apply {
-            mainHomeMadel = mainModel
-            lifecycleOwner = this@MainHomeActivity
-            navView.setOnNavigationItemSelectedListener(this@MainHomeActivity)
-            navView.labelVisibilityMode = BottomNavigationView.LABEL_VISIBILITY_LABELED
-        }
+    private fun setupViewPager() {
+        adapter = MainPagerAdapter(this)
+        binding.viewPager.adapter = adapter
+        binding.viewPager.isUserInputEnabled = false // 禁用滑动
 
-        mainModel.navId.observe(this, Observer {
-            onNavItemSelected(binding.navView.menu.findItem(it))
+        // 设置 TabLayout 与 ViewPager2 关联
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.customView = createCustomTab(position)
+        }.attach()
+
+        // 设置 TabLayout 的 Tab 选中监听器
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                // 点击 Tab 时切换页面
+                binding.viewPager.setCurrentItem(tab.position, false)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                // No-op
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                // No-op
+            }
         })
 
-
-        onNavigationItemSelected(binding.navView.menu.findItem(R.id.navigation_home))
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        mainModel.navId.value = item.itemId
-        return  true
-    }
-
-    private fun onNavItemSelected(item: MenuItem) {
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                openNavFrag("Home", HomeFragment())
-            }
-            R.id.navigation_bestsellers -> {
-                openNavFrag("bestsellers", bestsellersFragment())
-            }
-            R.id.navigation_popularActivities -> {
-                openNavFrag("popularactivities", popularactivitiesFragment())
-            }
-            R.id.navigation_tvHot -> {
-                openNavFrag("tvHot", TvHotFragment())
-            }
-            R.id.navigation_cart -> {
-                openNavFrag("cart", CartFragment())
-            }
-
+    private fun setupTabLayout() {
+        // 可选：自定义 TabLayout 的样式，例如选中时的文字颜色
+        binding.tabLayout.apply {
+            tabGravity = TabLayout.GRAVITY_FILL
+            tabMode = TabLayout.MODE_FIXED
         }
     }
 
-    //開啟Fragment
-    private fun openNavFrag(tag: String, frag: Fragment) {
-        val fragTransaction = supportFragmentManager.beginTransaction()
-        if (supportFragmentManager.findFragmentByTag(tag) != null)
-            fragTransaction.replace(
-                R.id.nav_host_fragment_activity_main,
-                supportFragmentManager.findFragmentByTag(tag)!!
-            )
-        else {
-            val bundle = mainModel.navBundle.value
-            frag.arguments = bundle
-            fragTransaction.replace(R.id.nav_host_fragment_activity_main, frag, tag)
-        }
-        fragTransaction.commit()
-    }
+    @SuppressLint("MissingInflatedId")
+    private fun createCustomTab(position: Int): View {
+        val tabView = LayoutInflater.from(this).inflate(R.layout.custom_tab, null)
+        val tabIcon = tabView.findViewById<ImageView>(R.id.tab_icon)
+        val tabText = tabView.findViewById<TextView>(R.id.tab_text)
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (onBackPressed(supportFragmentManager))
-            return
-        showAlertDialog(getString(R.string.alert), getString(R.string.sure_to_leave), true)
-    }
-
-    private fun onBackPressed(fragmentManager: FragmentManager): Boolean {
-        val fragmentList = fragmentManager.fragments
-        if (fragmentList.size > 0) {
-            for (frag in fragmentList) {
-                if (frag == null || !frag.isVisible) {
-                    continue
-                }
-
-                if (frag is HomeFragment || frag is bestsellersFragment || frag is popularactivitiesFragment || frag is TvHotFragment || frag is CartFragment || frag is MemberFragment) {
-                    return false
-                }
-
-                if (onBackPressed(frag.childFragmentManager)) {
-                    return true
-                }
+        when (position) {
+            0 -> {
+                tabIcon.setImageResource(R.drawable.ic_home_black_24dp)
+                tabText.text = getString(R.string.title_home)
+            }
+            1 -> {
+                tabIcon.setImageResource(R.drawable.ic_bestsellers_24)
+                tabText.text = getString(R.string.title_bestsellers)
+            }
+            2 -> {
+                tabIcon.setImageResource(R.drawable.ic_hot_event_24)
+                tabText.text = getString(R.string.title_popularActivities)
+            }
+            3 -> {
+                tabIcon.setImageResource(R.drawable.ic_tv_hot_24)
+                tabText.text = getString(R.string.title_tvHot)
+            }
+            4 -> {
+                tabIcon.setImageResource(R.drawable.ic_shopping_cart_24)
+                tabText.text = getString(R.string.title_cart)
+            }
+            5 -> {
+                tabIcon.setImageResource(R.drawable.ic_member_24)
+                tabText.text = getString(R.string.title_member)
             }
         }
 
-        if (fragmentManager.backStackEntryCount > 0) {
-            fragmentManager.popBackStack()
-            return true
-        }
-
-        return false
-    }
-
-    private fun showAlertDialog(title: String, message: String, showNegBtn: Boolean) {
-        val builder = AlertDialog.Builder(this)
-            .setTitle(title).setMessage(message)
-            .setPositiveButton(R.string.sure) { _, _ -> finish() }
-            .setCancelable(false)
-
-        if (showNegBtn) {
-            builder.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
-        }
-        val dialog = builder.show()
-
-        if (showNegBtn)
-            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK)
+        return tabView
     }
 }
+
+

@@ -35,4 +35,10 @@
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_cart" />
 
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_member"-->
+<!--        android:name="com.example.yuefenginterviewproject.ui.member.MemberFragment"-->
+<!--        android:label="@string/title_member"-->
+<!--        tools:layout="@layout/fragment_member" />-->
+
 </navigation>
