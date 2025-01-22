@@ -1,0 +1,29 @@
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="360dp"
+    android:height="125dp"
+    android:viewportWidth="412"
+    android:viewportHeight="143"
+    tools:ignore="VectorRaster">
+  <!--
+    原本 內在大小 應是 412 x 50
+    其中弧度深度佔高度 50%
+    也就是 25
+    現在透過 Group 作 垂直平移
+    讓 內在大小擴充為 412 x 143
+    最後 畫面大小會是 360dp x 125dp
+  -->
+  <group
+      android:translateY="93">
+    <!-- 假背景 -->
+    <path
+      tools:fillColor="#50F0"
+      android:pathData="M0,0 L412,0 L412,50 L0,50 z"/>
+    <path
+      android:pathData="M206,-820m-870,0a870,870 0,1 1,1740 0a870,870 0,1 1,-1740 0"
+      android:fillType="evenOdd"
+      android:fillColor="#CC1E05"
+      tools:fillColor="#55CC1E05"/>
+  </group>
+</vector>

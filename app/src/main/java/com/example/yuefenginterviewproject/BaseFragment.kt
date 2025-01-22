@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Spinner
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -45,6 +46,18 @@ abstract class BaseFragment<T: ViewDataBinding>: Fragment() {
         lifecycleScope.launch {
             delay(100)
             spinner.setSelection(spinnerPosition)
+        }
+    }
+
+    class BackgroundImage {
+        var ImageUrl: String? = null
+        @DrawableRes
+        var DrawableId: Int? = null
+        var BitmapRatio: Float? = null
+        var Index: Array<String>? = null
+
+        override fun toString(): String {
+            return "ClassPojo [ImageUrl = $ImageUrl, DrawableId = $DrawableId, BitmapRatio = $BitmapRatio, Index = $Index]"
         }
     }
 
