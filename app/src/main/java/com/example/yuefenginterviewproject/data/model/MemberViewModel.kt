@@ -16,6 +16,7 @@ import com.example.yuefenginterviewproject.data.entity.NavbarEntity
 import com.example.yuefenginterviewproject.data.repository.MemberRepository
 import com.example.yuefenginterviewproject.ui.member.MemberNavbarItemAdapter
 import com.example.yuefenginterviewproject.ui.member.MemberTicketsItemAdapter
+import com.example.yuefenginterviewproject.ui.member.MemberTreasureBoxAdapter
 
 class MemberViewModel(application: Application) :
     AndroidViewModel(application) {
@@ -23,6 +24,8 @@ class MemberViewModel(application: Application) :
     val navbarList = MutableLiveData<MutableList<NavbarEntity>>()
 
     val myTicketsList = MutableLiveData<MutableList<NavbarEntity>>()
+
+    val myTreasureBoxList = MutableLiveData<MutableList<NavbarEntity>>()
 
     private var lastClickTime: Long = 0
 
@@ -39,6 +42,13 @@ class MemberViewModel(application: Application) :
         memberRepository.getMyTicketsData(object : MemberRepository.OnNavbarFinish {
             override fun onFinish(navbarEntity: MutableList<NavbarEntity>) {
                 myTicketsList.postValue(navbarEntity)
+            }
+
+        })
+
+        memberRepository.getTreasureBoxData(object : MemberRepository.OnNavbarFinish {
+            override fun onFinish(navbarEntity: MutableList<NavbarEntity>) {
+                myTreasureBoxList.postValue(navbarEntity)
             }
 
         })
@@ -117,6 +127,42 @@ class MemberViewModel(application: Application) :
             }
             recyclerView.layoutManager = gridLayoutManager
             recyclerView.addItemDecoration(MemberTicketsItemAdapter.HomeNavbarItemDecoration(rowSpacing))
+            recyclerView.itemAnimator = DefaultItemAnimator()
+
+            if (navbarEntity == null) {
+                return
+            }
+            adapter.setList(navbarEntity, memberViewModel)
+        }
+
+        //優惠百寶箱
+        @BindingAdapter("member_TreasureBox_adapter", "member_TreasureBox_recyclerview")
+        @JvmStatic
+        fun setMyTreasureBoxRecyclerViewList(
+            recyclerView: RecyclerView, navbarEntity: MutableList<NavbarEntity>?,
+            memberViewModel: MemberViewModel
+        ) {
+            var adapter = recyclerView.adapter as? MemberTreasureBoxAdapter
+            if (adapter == null) {
+                adapter = MemberTreasureBoxAdapter()
+                recyclerView.adapter = adapter
+            }
+
+            val gridLayoutManager = GridLayoutManager(recyclerView.context, 4)
+            gridLayoutManager.orientation = RecyclerView.VERTICAL
+            // 自訂 SpanSizeLookup，確保每個項目佔用 1 個 span
+            gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return 1 // 每個項目佔用 1 個 span
+                }
+            }
+
+            recyclerView.layoutManager = gridLayoutManager
+
+            // 計算列間距並應用 ItemDecoration
+            val density = recyclerView.context.resources.displayMetrics.density
+            val columnSpacing = (8 * density).toInt() // 假設列間距為 8dp
+            recyclerView.addItemDecoration(MemberTreasureBoxAdapter.HomeNavbarItemDecoration(columnSpacing))
             recyclerView.itemAnimator = DefaultItemAnimator()
 
             if (navbarEntity == null) {

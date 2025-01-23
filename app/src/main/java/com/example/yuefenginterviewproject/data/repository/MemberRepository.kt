@@ -59,6 +59,31 @@ class MemberRepository {
         })
     }
 
+    //優惠百寶箱
+    fun getTreasureBoxData(task: OnNavbarFinish) {
+        val myTreasureBoxList = mutableListOf<NavbarEntity>()
+        dbReference = FirebaseDatabase.getInstance().getReference("Data")
+        dbReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (item in snapshot.child("Navbar2").children) {
+                        val activityBannerItems = item.key
+                        val entity = snapshot.child("Navbar2").child(activityBannerItems.toString())
+                            .getValue(NavbarEntity::class.java)
+                        if (entity != null) {
+                            myTreasureBoxList.add(entity)
+                        }
+                    }
+                    task.onFinish(myTreasureBoxList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
     interface OnNavbarFinish {
         fun onFinish(navbarEntity: MutableList<NavbarEntity>)
     }

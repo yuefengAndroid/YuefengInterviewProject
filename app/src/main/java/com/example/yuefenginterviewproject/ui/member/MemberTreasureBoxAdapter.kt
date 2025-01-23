@@ -8,15 +8,15 @@ import com.example.yuefenginterviewproject.BaseRecyclerViewAdapter
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.entity.NavbarEntity
 import com.example.yuefenginterviewproject.data.model.MemberViewModel
-import com.example.yuefenginterviewproject.databinding.RecyclerviewTicketsItemsBinding
+import com.example.yuefenginterviewproject.databinding.RecyclerviewTreasureboxItemsBinding
 
-class MemberTicketsItemAdapter :
-    BaseRecyclerViewAdapter<NavbarEntity, RecyclerviewTicketsItemsBinding>() {
-    override val resId: Int = R.layout.recyclerview_tickets_items
+class MemberTreasureBoxAdapter :
+    BaseRecyclerViewAdapter<NavbarEntity, RecyclerviewTreasureboxItemsBinding>() {
+    override val resId: Int = R.layout.recyclerview_treasurebox_items
 
 
     override fun bindData(
-        holder: BaseViewHolder<RecyclerviewTicketsItemsBinding>,
+        holder: BaseRecyclerViewAdapter.BaseViewHolder<RecyclerviewTreasureboxItemsBinding>,
         entity: NavbarEntity,
         viewModel: AndroidViewModel
     ) {
@@ -26,7 +26,7 @@ class MemberTicketsItemAdapter :
     }
 
     override fun onBindViewHolder(
-        holder: BaseViewHolder<RecyclerviewTicketsItemsBinding>,
+        holder: BaseRecyclerViewAdapter.BaseViewHolder<RecyclerviewTreasureboxItemsBinding>,
         position: Int
     ) {
         val entity = itemList[position]
@@ -41,8 +41,14 @@ class MemberTicketsItemAdapter :
             parent: RecyclerView,
             state: RecyclerView.State
         ) {
-            outRect.left = columnSpacing
-            outRect.right = columnSpacing
+            val position = parent.getChildAdapterPosition(view)
+            val spanCount = 4 // 每行 4 個項目
+            val column = position % spanCount // 計算當前項目的列位置
+
+            // 左間距
+            outRect.left = if (column == 0) 0 else columnSpacing / 2
+            // 右間距
+            outRect.right = if (column == spanCount - 1) 0 else columnSpacing / 2
         }
     }
 

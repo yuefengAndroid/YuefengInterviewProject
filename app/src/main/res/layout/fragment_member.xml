@@ -113,8 +113,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="14dp"
@@ -172,9 +172,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@+id/line1"
                             app:member_order_adapter="@{memberModel.navbarList}"
                             app:member_order_recyclerview="@{memberModel}"
-                            app:layout_constraintTop_toBottomOf="@+id/myOrderTitle"
                             tools:itemCount="1"
                             tools:listitem="@layout/recyclerview_navbar_items" />
 
@@ -186,14 +186,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="10dp"
                     app:contentPadding="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/recList"
+                    app:layout_constraintBottom_toTopOf="@+id/navbar03"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/navbar01">
@@ -208,12 +208,74 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dp"
-                            app:member_tickets_adapter="@{memberModel.myTicketsList}"
-                            app:member_tickets_recyclerview="@{memberModel}"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
+                            app:member_tickets_adapter="@{memberModel.myTicketsList}"
+                            app:member_tickets_recyclerview="@{memberModel}"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/recyclerview_tickets_items" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/navbar03"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="15dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="10dp"
+                    app:contentPadding="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/recList"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/navbar02">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/myOrderTitle3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="優惠百寶箱"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/line3"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/gray"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/myOrderTitle3" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/myTreasureBoxList02"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dp"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/line3"
+                            app:member_TreasureBox_adapter="@{memberModel.myTreasureBoxList}"
+                            app:member_TreasureBox_recyclerview="@{memberModel}"
                             tools:itemCount="2"
                             tools:listitem="@layout/recyclerview_navbar_items" />
 
@@ -225,7 +287,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/navbar02" />
+                    app:layout_constraintTop_toBottomOf="@+id/navbar03" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
