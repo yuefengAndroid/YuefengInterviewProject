@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/con_item1_bg"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_black4c_radius5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/con_item2_bg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/con_item1_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:text="E幣 >"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/con_item1_num"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item1_bg"
+        app:layout_constraintTop_toTopOf="@+id/con_item1_bg"
+        tools:text="E幣 >"
+        tools:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/con_item1_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="123枚"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/con_item1_text"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item1_text"
+        app:layout_constraintRight_toRightOf="@+id/con_item1_text"
+        app:layout_constraintTop_toBottomOf="@+id/con_item1_text"
+        tools:text="123枚"
+        tools:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/con_item2_bg"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_black4c_radius5"
+        app:layout_constraintLeft_toRightOf="@+id/con_item1_bg"
+        app:layout_constraintRight_toLeftOf="@+id/con_item3_bg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/con_item2_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:text="東森幣 >"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/con_item2_num"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item2_bg"
+        app:layout_constraintTop_toTopOf="@+id/con_item2_bg"
+        tools:text="東森幣 >"
+        tools:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/con_item2_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5,123枚"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/con_item2_text"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item2_text"
+        app:layout_constraintTop_toBottomOf="@+id/con_item2_text"
+        tools:text="5,123枚"
+        tools:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/con_item3_bg"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_black4c_radius5"
+        app:layout_constraintLeft_toRightOf="@+id/con_item2_bg"
+        app:layout_constraintRight_toLeftOf="@+id/con_item4_bg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/con_item3_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:text="折價券 >"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/con_item3_num"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item3_bg"
+        app:layout_constraintTop_toTopOf="@+id/con_item3_bg"
+        tools:text="折價券 >"
+        tools:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/con_item3_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="37張"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/con_item3_text"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item3_text"
+        app:layout_constraintTop_toBottomOf="@+id/con_item3_text"
+        tools:text="37張"
+        tools:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/con_item4_bg"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_black4c_radius5"
+        app:layout_constraintLeft_toRightOf="@+id/con_item3_bg"
+        app:layout_constraintRight_toLeftOf="@+id/con_item5_bg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/con_item4_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:text="提貨券 >"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/con_item4_num"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item4_bg"
+        app:layout_constraintTop_toTopOf="@+id/con_item4_bg"
+        tools:text="提貨券 >"
+        tools:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/con_item4_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$200"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/con_item4_text"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item4_text"
+        app:layout_constraintTop_toBottomOf="@+id/con_item4_text"
+        tools:text="$200"
+        tools:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/con_item5_bg"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/bg_black4c_radius5"
+        app:layout_constraintLeft_toRightOf="@+id/con_item4_bg"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/con_item5_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:text="樂透金 >"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/con_item5_num"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item5_bg"
+        app:layout_constraintTop_toTopOf="@+id/con_item5_bg"
+        tools:text="樂透金 >"
+        tools:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/con_item5_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="150枚"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/con_item5_text"
+        app:layout_constraintLeft_toLeftOf="@+id/con_item5_text"
+        app:layout_constraintTop_toBottomOf="@+id/con_item5_text"
+        tools:text="150枚"
+        tools:textColor="@color/black" />
+</androidx.constraintlayout.widget.ConstraintLayout>

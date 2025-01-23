@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.yuefenginterviewproject.BaseFragment
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.databinding.FragmentMemberBinding
+import com.example.yuefenginterviewproject.databinding.LayoutLoginButtonBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -17,6 +18,7 @@ import com.example.yuefenginterviewproject.databinding.FragmentMemberBinding
 class MemberFragment : BaseFragment<FragmentMemberBinding>() {
 
     override val resId: Int = R.layout.fragment_member
+    private lateinit var loginButtonBinding: LayoutLoginButtonBinding
     override fun initAfterBinding() {
 
     }
