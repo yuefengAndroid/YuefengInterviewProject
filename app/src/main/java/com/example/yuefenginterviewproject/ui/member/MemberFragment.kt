@@ -1,34 +1,27 @@
 package com.example.yuefenginterviewproject.ui.member
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.yuefenginterviewproject.BaseFragment
 import com.example.yuefenginterviewproject.R
+import com.example.yuefenginterviewproject.data.model.MemberViewModel
+import com.example.yuefenginterviewproject.data.repository.MemberRepository
 import com.example.yuefenginterviewproject.databinding.FragmentMemberBinding
 import com.example.yuefenginterviewproject.databinding.LayoutLoginButtonBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MemberFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MemberFragment : BaseFragment<FragmentMemberBinding>() {
 
     override val resId: Int = R.layout.fragment_member
     private lateinit var loginButtonBinding: LayoutLoginButtonBinding
+    private lateinit var memberViewModel: MemberViewModel
+
     override fun initAfterBinding() {
-
+        val memberRepository = MemberRepository()
+        memberViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(MemberViewModel::class.java).apply {
+            setRepository(memberRepository) // 手动注入 Repository
+        }
+        binding.memberModel = memberViewModel
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_member, container, false)
-    }
-
 }

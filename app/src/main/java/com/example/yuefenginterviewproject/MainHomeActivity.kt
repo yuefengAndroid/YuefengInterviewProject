@@ -9,7 +9,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.example.yuefenginterviewproject.data.model.MainHomeViewModel
 import com.example.yuefenginterviewproject.databinding.ActivityMainHomeBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -18,10 +20,12 @@ class MainHomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainHomeBinding
     private lateinit var adapter: MainPagerAdapter
+    private lateinit var mainHomeViewModel: MainHomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main_home)
+        mainHomeViewModel = ViewModelProvider(this)[MainHomeViewModel::class.java]
 
         // 初始化 ViewPager2 和 TabLayout
         setupViewPager()
