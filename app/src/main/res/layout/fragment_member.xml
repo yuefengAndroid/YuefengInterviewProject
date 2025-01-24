@@ -114,13 +114,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="10dp"
                     app:contentPadding="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/navbar02"
+                    app:layout_constraintBottom_toTopOf="@+id/remindCard"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/include_login_button">
@@ -182,12 +182,64 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/remindCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
+                    app:cardBackgroundColor="@color/color_fffde8"
+                    app:cardCornerRadius="14dp"
+                    app:contentPadding="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/navbar02"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/navbar01">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/remindImg"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/icon_new_notifications_24"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintRight_toLeftOf="@+id/remindStr"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/remindStr"
+                            android:layout_width="0dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:lines="3"
+                            android:textColor="@color/color_cc1e05"
+                            android:ellipsize="end"
+                            android:textSize="14dp"
+                            android:text="東森購物不會以訂單或信用卡異常..等原因，請您配合操作ATM或其他付款設定；如有不明來電請向客服確認！"
+                            app:layout_constraintLeft_toRightOf="@+id/remindImg"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/navbar02"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="14dp"
@@ -196,7 +248,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/navbar03"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/navbar01">
+                    app:layout_constraintTop_toBottomOf="@+id/remindCard">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -226,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="14dp"

@@ -47,5 +47,6 @@
     <color name="gray_e7e7e7">#E7E7E7</color>
     <color name="gray_ededed">#EdEdEd</color>
     <color name="gray_888888">#888888</color>
+    <color name="color_fffde8">#fffde8</color>
     <color name="transparent">#00000000</color>
 </resources>

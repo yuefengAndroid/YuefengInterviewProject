@@ -60,7 +60,11 @@ dependencies {
     implementation("com.google.firebase:firebase-database:21.0.0")
     implementation("com.google.android.gms:play-services-analytics-impl:18.2.0")
 
+    //圖片
     implementation("com.github.bumptech.glide:glide:4.15.1")
+
+    //輪播
+    implementation ("io.github.zguop:pager2Banner:1.0.5")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
