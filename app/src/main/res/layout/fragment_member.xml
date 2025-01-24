@@ -102,11 +102,153 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <include
-                    android:id="@+id/include_login_button"
+                    android:id="@+id/include_member_con_button"
                     layout="@layout/layout_member_con_info"
                     app:layout_constraintLeft_toLeftOf="@+id/bodyBg"
                     app:layout_constraintRight_toRightOf="@+id/bodyBg"
                     app:layout_constraintTop_toTopOf="@+id/bodyBg" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/navbarTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="10dp"
+                    app:contentPadding="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/myTask01"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/include_member_con_button">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/myAdTitle01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="胡媽媽的灶腳"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/myAdSubTitle01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="禮盒$388起>"
+                            android:textColor="@color/color_cc1e05"
+                            android:textSize="14dp"
+                            app:layout_constraintLeft_toLeftOf="@+id/myAdTitle01"
+                            app:layout_constraintTop_toBottomOf="@+id/myAdTitle01" />
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginEnd="3dp"
+                            android:src="@drawable/icon_member_01"
+                            app:layout_constraintBottom_toBottomOf="@+id/myAdSubTitle01"
+                            app:layout_constraintRight_toLeftOf="@+id/centerline"
+                            app:layout_constraintTop_toTopOf="@+id/myAdTitle01" />
+
+                        <TextView
+                            android:id="@+id/centerline"
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:background="@color/color_e1e1e1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/myAdTitle02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="8dp"
+                            android:text="東森小食堂"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintLeft_toLeftOf="@+id/centerline"
+                            app:layout_constraintTop_toTopOf="@+id/myAdTitle01" />
+
+                        <TextView
+                            android:id="@+id/myAdSubTitle02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="送$88樂透金>"
+                            android:textColor="@color/color_cc1e05"
+                            android:textSize="14dp"
+                            app:layout_constraintLeft_toLeftOf="@+id/myAdTitle02"
+                            app:layout_constraintTop_toBottomOf="@+id/myAdTitle02" />
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginEnd="3dp"
+                            android:src="@drawable/icon_member_02"
+                            app:layout_constraintBottom_toBottomOf="@+id/myAdSubTitle01"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/myAdTitle01" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/myTask01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/navbar01"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/navbarTwo">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/myTaskImg"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:background="@drawable/img_tasktitle"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/myTaskList01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@+id/myTaskImg"
+                            app:member_order_adapter="@{memberModel.navbarList}"
+                            app:member_order_recyclerview="@{memberModel}"
+                            tools:itemCount="1"
+                            tools:listitem="@layout/recyclerview_navbar_items" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/navbar01"
@@ -117,13 +259,13 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="14dp"
+                    app:cardCornerRadius="6dp"
                     app:cardElevation="10dp"
                     app:contentPadding="10dp"
                     app:layout_constraintBottom_toTopOf="@+id/remindCard"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/include_login_button">
+                    app:layout_constraintTop_toBottomOf="@+id/myTask01">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -163,7 +305,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/gray"
+                            android:background="@color/color_e1e1e1"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/myOrderTitle" />
 
@@ -190,7 +332,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/color_fffde8"
-                    app:cardCornerRadius="14dp"
+                    app:cardCornerRadius="6dp"
                     app:contentPadding="10dp"
                     app:layout_constraintBottom_toTopOf="@+id/navbar02"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -207,28 +349,28 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/icon_new_notifications_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintRight_toLeftOf="@+id/remindStr"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/remindStr"
                             android:layout_width="0dp"
-                            android:layout_marginStart="6dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginBottom="5dp"
-                            android:lines="3"
-                            android:textColor="@color/color_cc1e05"
                             android:ellipsize="end"
-                            android:textSize="14dp"
+                            android:lines="3"
                             android:text="東森購物不會以訂單或信用卡異常..等原因，請您配合操作ATM或其他付款設定；如有不明來電請向客服確認！"
+                            android:textColor="@color/color_cc1e05"
+                            android:textSize="14dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toRightOf="@+id/remindImg"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
@@ -242,7 +384,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="14dp"
+                    app:cardCornerRadius="6dp"
                     app:cardElevation="10dp"
                     app:contentPadding="10dp"
                     app:layout_constraintBottom_toTopOf="@+id/navbar03"
@@ -281,7 +423,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="14dp"
+                    app:cardCornerRadius="6dp"
                     app:cardElevation="10dp"
                     app:contentPadding="10dp"
                     app:layout_constraintBottom_toTopOf="@+id/recList"
@@ -313,7 +455,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/gray"
+                            android:background="@color/color_e1e1e1"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/myOrderTitle3" />
 
