@@ -36,7 +36,7 @@
     <color name="deeppink">#FF1493</color><!--深粉紅色 -->
     <color name="fuchsia">#FF00FF</color><!--紫紅色 -->
     <color name="magenta">#FF00FF</color><!--紅紫色 -->
-
+    <color name="custom_pink">#FFC0CB</color>
     <color name="orange_FF9797">#FF9797</color>
     <color name="orange_FFBD9D">#FFBD9D</color>
     <color name="orange_FFDAC8">#FFDAC8</color>

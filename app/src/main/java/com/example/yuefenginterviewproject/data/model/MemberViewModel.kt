@@ -1,7 +1,11 @@
 package com.example.yuefenginterviewproject.data.model
 
 import android.app.Application
+import android.graphics.Color
+import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -11,16 +15,25 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
+import com.example.yuefenginterviewproject.BaseMyProjectApplication
+import com.example.yuefenginterviewproject.BaseScaleInTransformer
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.entity.NavbarEntity
+import com.example.yuefenginterviewproject.data.entity.StoreCouponEntity
 import com.example.yuefenginterviewproject.data.repository.MemberRepository
+import com.example.yuefenginterviewproject.ui.member.MemberAdBannerItemAdapter
 import com.example.yuefenginterviewproject.ui.member.MemberNavbarItemAdapter
 import com.example.yuefenginterviewproject.ui.member.MemberTicketsItemAdapter
 import com.example.yuefenginterviewproject.ui.member.MemberTreasureBoxAdapter
+import com.to.aboomy.pager2banner.Banner
+import com.to.aboomy.pager2banner.IndicatorView
+
 
 class MemberViewModel(application: Application) :
     AndroidViewModel(application) {
     private lateinit var memberRepository: MemberRepository
+    val adBannerList = MutableLiveData<MutableList<StoreCouponEntity>>()
+
     val navbarList = MutableLiveData<MutableList<NavbarEntity>>()
 
     val myTicketsList = MutableLiveData<MutableList<NavbarEntity>>()
@@ -31,6 +44,13 @@ class MemberViewModel(application: Application) :
 
     fun setRepository(repository: MemberRepository) {
         this.memberRepository = repository
+
+        memberRepository.getAdBannerData(object : MemberRepository.OnActivityBannerFinish {
+            override fun onFinish(storeCouponEntity: MutableList<StoreCouponEntity>) {
+                adBannerList.postValue(storeCouponEntity)
+            }
+
+        })
 
         memberRepository.getMyOrderData(object : MemberRepository.OnNavbarFinish {
             override fun onFinish(navbarEntity: MutableList<NavbarEntity>) {
@@ -54,6 +74,27 @@ class MemberViewModel(application: Application) :
         })
     }
 
+    //首頁的廣告輪播點擊事件
+    fun onBannerClick(storeCouponEntity: StoreCouponEntity) {
+        //2022/02/18 如果要使用getApplication<BaseCoinApplication> 要記得 AndroidManifest.xml 裡要記得宣告name
+        //android:name=".BaseCoinApplication"
+        for (store in adBannerList.value!!) {
+            if (store.store_id == storeCouponEntity.store_id) {
+                storeCouponEntity.store_name = store.store_name
+                storeCouponEntity.store_logo = store.store_logo
+                storeCouponEntity.address = store.address
+                break
+            }
+        }
+
+        storeCouponEntity.webviewUrl?.let {
+            getApplication<BaseMyProjectApplication>().openWebView(
+                it,
+                storeCouponEntity.store_name.toString()
+            )
+        }
+    }
+
     fun onNavBarClick(navbarEntity: NavbarEntity) {
         val curTime = System.currentTimeMillis()
         //防止連點判斷
@@ -63,6 +104,36 @@ class MemberViewModel(application: Application) :
     }
 
     companion object {
+
+        //第一區塊-廣告輪播
+        @BindingAdapter("member_banner_model", "member_banner_adapter", "indicatorView")
+        @JvmStatic
+        fun setAdBanner(
+            bannerLayout: RelativeLayout?,
+            homeViewModel: MemberViewModel,
+            storeCouponEntityList: MutableList<StoreCouponEntity>?,
+            indicator: View
+        ) {
+            val banner = bannerLayout as Banner
+            var adapter = banner.adapter as? MemberAdBannerItemAdapter
+
+            if (adapter == null) {
+                adapter = MemberAdBannerItemAdapter()
+                banner.setAutoTurningTime(2000)
+                    .setIndicator(
+                        (indicator.findViewById<IndicatorView>(R.id.indicator2))
+                            .setIndicatorColor(ContextCompat.getColor(bannerLayout.context, R.color.custom_pink))
+                            .setIndicatorSelectorColor(Color.RED), false
+                    )
+                banner.setPageMargin(0, 0).addPageTransformer(BaseScaleInTransformer())
+                banner.adapter = adapter
+            }
+
+            if (storeCouponEntityList != null) {
+                adapter.setList(storeCouponEntityList, homeViewModel)
+            }
+        }
+
         //我的訂單
         @BindingAdapter("member_order_adapter", "member_order_recyclerview")
         @JvmStatic

@@ -237,15 +237,28 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/myTaskList01"
+                        <com.to.aboomy.pager2banner.Banner
+                            android:id="@+id/homePopularAdsBanner"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@+id/myTaskImg"
-                            app:member_order_adapter="@{memberModel.navbarList}"
-                            app:member_order_recyclerview="@{memberModel}"
-                            tools:itemCount="1"
-                            tools:listitem="@layout/recyclerview_navbar_items" />
+                            android:layout_height="100dp"
+                            app:member_banner_adapter="@{memberModel.adBannerList}"
+                            app:member_banner_model="@{memberModel}"
+                            app:indicatorView="@{indicator2}"
+                            app:layout_constraintBottom_toTopOf="@+id/indicator2"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/myTaskImg" />
+
+                        <com.to.aboomy.pager2banner.IndicatorView
+                            android:id="@+id/indicator2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homePopularAdsBanner"
+                            tools:ignore="MissingConstraints" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
