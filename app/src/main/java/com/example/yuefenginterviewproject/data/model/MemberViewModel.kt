@@ -40,6 +40,10 @@ class MemberViewModel(application: Application) :
 
     val myTreasureBoxList = MutableLiveData<MutableList<NavbarEntity>>()
 
+    val myOthersList = MutableLiveData<MutableList<NavbarEntity>>()
+
+    val myHelpList = MutableLiveData<MutableList<NavbarEntity>>()
+
     private var lastClickTime: Long = 0
 
     fun setRepository(repository: MemberRepository) {
@@ -69,6 +73,20 @@ class MemberViewModel(application: Application) :
         memberRepository.getTreasureBoxData(object : MemberRepository.OnNavbarFinish {
             override fun onFinish(navbarEntity: MutableList<NavbarEntity>) {
                 myTreasureBoxList.postValue(navbarEntity)
+            }
+
+        })
+
+        memberRepository.getOthersData(object : MemberRepository.OnNavbarFinish {
+            override fun onFinish(navbarEntity: MutableList<NavbarEntity>) {
+                myOthersList.postValue(navbarEntity)
+            }
+
+        })
+
+        memberRepository.getHelpBoxData(object : MemberRepository.OnNavbarFinish {
+            override fun onFinish(navbarEntity: MutableList<NavbarEntity>) {
+                myHelpList.postValue(navbarEntity)
             }
 
         })

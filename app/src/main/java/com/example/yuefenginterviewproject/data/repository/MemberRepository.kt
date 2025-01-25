@@ -115,6 +115,56 @@ class MemberRepository {
         })
     }
 
+    //防詐騙提醒區
+    fun getOthersData(task: OnNavbarFinish) {
+        val myTreasureBoxList = mutableListOf<NavbarEntity>()
+        dbReference = FirebaseDatabase.getInstance().getReference("Data")
+        dbReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (item in snapshot.child("Navbar5").children) {
+                        val activityBannerItems = item.key
+                        val entity = snapshot.child("Navbar5").child(activityBannerItems.toString())
+                            .getValue(NavbarEntity::class.java)
+                        if (entity != null) {
+                            myTreasureBoxList.add(entity)
+                        }
+                    }
+                    task.onFinish(myTreasureBoxList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
+    //幫助中心
+    fun getHelpBoxData(task: OnNavbarFinish) {
+        val myTreasureBoxList = mutableListOf<NavbarEntity>()
+        dbReference = FirebaseDatabase.getInstance().getReference("Data")
+        dbReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (item in snapshot.child("Navbar4").children) {
+                        val activityBannerItems = item.key
+                        val entity = snapshot.child("Navbar4").child(activityBannerItems.toString())
+                            .getValue(NavbarEntity::class.java)
+                        if (entity != null) {
+                            myTreasureBoxList.add(entity)
+                        }
+                    }
+                    task.onFinish(myTreasureBoxList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
     interface OnActivityBannerFinish {
         fun onFinish(storeCouponEntity: MutableList<StoreCouponEntity>)
     }

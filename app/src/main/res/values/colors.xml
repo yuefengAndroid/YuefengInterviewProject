@@ -12,11 +12,14 @@
     <color name="gray">#FFE9E9E9</color>
     <color name="color_e1e1e1">#e1e1e1</color>
     <color name="gray_bg">#FFf5f5f5</color>
+    <color name="color_ededed">#ededed</color>
     <color name="color_272727">#FF272727</color>
     <color name="color_75767b">#75767b</color>
     <color name="gray_aaaaaa">#AAAAAA</color>
     <color name="color_84827f">#84827f</color>
     <color name="color_b8b3ad">#b8b3ad</color>
+    <color name="color_0065BF">#0065BF</color>
+    <color name="color_323232">#323232</color>
     <color name="color_7DB33F">#7DB33F</color>
     <color name="blue">#3FB2E6</color>
     <color name="color_e6ededed">#E6EdEdEd</color>

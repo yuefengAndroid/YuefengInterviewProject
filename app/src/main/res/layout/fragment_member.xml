@@ -241,13 +241,13 @@
                             android:id="@+id/homePopularAdsBanner"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
-                            app:member_banner_adapter="@{memberModel.adBannerList}"
-                            app:member_banner_model="@{memberModel}"
                             app:indicatorView="@{indicator2}"
                             app:layout_constraintBottom_toTopOf="@+id/indicator2"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/myTaskImg" />
+                            app:layout_constraintTop_toBottomOf="@+id/myTaskImg"
+                            app:member_banner_adapter="@{memberModel.adBannerList}"
+                            app:member_banner_model="@{memberModel}" />
 
                         <com.to.aboomy.pager2banner.IndicatorView
                             android:id="@+id/indicator2"
@@ -317,7 +317,7 @@
                             android:id="@+id/line1"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="8dp"
                             android:background="@color/color_e1e1e1"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/myOrderTitle" />
@@ -439,7 +439,7 @@
                     app:cardCornerRadius="6dp"
                     app:cardElevation="10dp"
                     app:contentPadding="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/recList"
+                    app:layout_constraintBottom_toTopOf="@+id/navbar04"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/navbar02">
@@ -467,7 +467,7 @@
                             android:id="@+id/line3"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="8dp"
                             android:background="@color/color_e1e1e1"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/myOrderTitle3" />
@@ -489,12 +489,187 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/navbar04"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/navbar05"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/navbar03">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/head_img"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="12dp"
+                            android:src="@drawable/gsenlife04"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/myJoinMemberTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="3dp"
+                            android:text="加入森活會員"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/head_img"
+                            app:layout_constraintLeft_toRightOf="@+id/head_img"
+                            app:layout_constraintTop_toTopOf="@+id/head_img" />
+
+                        <TextView
+                            android:id="@+id/myJoinMemberTitle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:text="查看說明"
+                            android:textColor="@color/color_0065BF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/line4"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@color/color_e1e1e1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/myJoinMemberTitle" />
+
+                        <View
+                            android:id="@+id/body_View2"
+                            android:layout_width="match_parent"
+                            android:layout_height="86dp"
+                            app:layout_constraintBottom_toTopOf="@id/bottom_View3"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/line4" />
+
+                        <View
+                            android:id="@+id/bottom_View3"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/body_View2" />
+
+                        <View
+                            android:id="@+id/bottom_View3_1"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="2dp"
+                            android:background="@color/color_ededed"
+                            app:layout_constraintBottom_toBottomOf="@+id/bottom_View3"
+                            app:layout_constraintLeft_toLeftOf="@id/bottom_View3"
+                            app:layout_constraintRight_toRightOf="@id/bottom_View3"
+                            app:layout_constraintTop_toTopOf="@+id/bottom_View3" />
+
+                        <CheckBox
+                            android:id="@+id/check_join"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="14sp"
+                            app:layout_constraintLeft_toLeftOf="@+id/body_View2"
+                            app:layout_constraintTop_toTopOf="@id/body_View2" />
+
+                        <TextView
+                            android:id="@+id/body_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="12dp"
+                            android:text="同意若訂購商品適合使用循環袋包裝，東森可使用循環袋配送出貨，本人願意配合拆袋後將循環袋送至東森配合之回收點。"
+                            android:textColor="@color/color_323232"
+                            android:textSize="14sp"
+                            app:layout_constraintLeft_toRightOf="@+id/check_join"
+                            app:layout_constraintRight_toRightOf="@id/body_View2"
+                            app:layout_constraintTop_toTopOf="@id/check_join" />
+
+                        <TextView
+                            android:id="@+id/bottom_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="※為確保訂購商品配送時能獲得充分保護，出貨時將由東森判斷是否適用循環袋包裝出貨。非適用情況包含但不限於材積過大、易碎品、高單價品、生鮮商品、低溫宅配商品等。"
+                            android:textColor="@color/color_323232"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/bottom_View3"
+                            app:layout_constraintLeft_toLeftOf="@+id/check_join"
+                            app:layout_constraintRight_toRightOf="@+id/body_title"
+                            app:layout_constraintTop_toTopOf="@+id/bottom_View3" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/navbar05"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="10dp"
+                    app:contentPadding="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/recList"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/navbar04">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/myOthersList01"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:member_TreasureBox_adapter="@{memberModel.myOthersList}"
+                            app:member_TreasureBox_recyclerview="@{memberModel}"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/recyclerview_navbar_items" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/navbar03" />
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/navbar05" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
