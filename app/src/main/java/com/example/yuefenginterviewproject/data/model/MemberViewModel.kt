@@ -305,7 +305,7 @@ class MemberViewModel(application: Application) :
 
             // 計算列間距並應用 ItemDecoration
             val density = recyclerView.context.resources.displayMetrics.density
-            val columnSpacing = (8 * density).toInt() // 假設列間距為 8dp
+            val columnSpacing = (4 * density).toInt() // 假設列間距為 8dp
             recyclerView.addItemDecoration(MemberProductItemAdapter.HomeNavbarItemDecoration(columnSpacing))
             recyclerView.itemAnimator = DefaultItemAnimator()
 
