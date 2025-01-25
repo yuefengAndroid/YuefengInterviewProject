@@ -1,6 +1,7 @@
 package com.example.yuefenginterviewproject.data.repository
 
 import com.example.yuefenginterviewproject.data.entity.NavbarEntity
+import com.example.yuefenginterviewproject.data.entity.ProductsEntity
 import com.example.yuefenginterviewproject.data.entity.StoreCouponEntity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -165,11 +166,40 @@ class MemberRepository {
         })
     }
 
+    //專屬推薦
+    fun getProductsData(task: OnProductsFinish) {
+        val myTreasureBoxList = mutableListOf<ProductsEntity>()
+        dbReference = FirebaseDatabase.getInstance().getReference("Data")
+        dbReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (item in snapshot.child("product").children) {
+                        val activityBannerItems = item.key
+                        val entity = snapshot.child("product").child(activityBannerItems.toString())
+                            .getValue(ProductsEntity::class.java)
+                        if (entity != null) {
+                            myTreasureBoxList.add(entity)
+                        }
+                    }
+                    task.onFinish(myTreasureBoxList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
     interface OnActivityBannerFinish {
         fun onFinish(storeCouponEntity: MutableList<StoreCouponEntity>)
     }
 
     interface OnNavbarFinish {
         fun onFinish(navbarEntity: MutableList<NavbarEntity>)
+    }
+
+    interface OnProductsFinish {
+        fun onFinish(productsEntity: MutableList<ProductsEntity>)
     }
 }

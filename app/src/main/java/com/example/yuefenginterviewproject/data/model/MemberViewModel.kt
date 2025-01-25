@@ -19,10 +19,12 @@ import com.example.yuefenginterviewproject.BaseMyProjectApplication
 import com.example.yuefenginterviewproject.BaseScaleInTransformer
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.entity.NavbarEntity
+import com.example.yuefenginterviewproject.data.entity.ProductsEntity
 import com.example.yuefenginterviewproject.data.entity.StoreCouponEntity
 import com.example.yuefenginterviewproject.data.repository.MemberRepository
 import com.example.yuefenginterviewproject.ui.member.MemberAdBannerItemAdapter
 import com.example.yuefenginterviewproject.ui.member.MemberNavbarItemAdapter
+import com.example.yuefenginterviewproject.ui.member.MemberProductItemAdapter
 import com.example.yuefenginterviewproject.ui.member.MemberTicketsItemAdapter
 import com.example.yuefenginterviewproject.ui.member.MemberTreasureBoxAdapter
 import com.to.aboomy.pager2banner.Banner
@@ -43,6 +45,8 @@ class MemberViewModel(application: Application) :
     val myOthersList = MutableLiveData<MutableList<NavbarEntity>>()
 
     val myHelpList = MutableLiveData<MutableList<NavbarEntity>>()
+
+    val myProductsList = MutableLiveData<MutableList<ProductsEntity>>()
 
     private var lastClickTime: Long = 0
 
@@ -90,6 +94,13 @@ class MemberViewModel(application: Application) :
             }
 
         })
+
+        memberRepository.getProductsData(object : MemberRepository.OnProductsFinish {
+            override fun onFinish(productsEntity: MutableList<ProductsEntity>) {
+                myProductsList.postValue(productsEntity)
+            }
+
+        })
     }
 
     //首頁的廣告輪播點擊事件
@@ -114,6 +125,14 @@ class MemberViewModel(application: Application) :
     }
 
     fun onNavBarClick(navbarEntity: NavbarEntity) {
+        val curTime = System.currentTimeMillis()
+        //防止連點判斷
+        if (curTime - lastClickTime > 1000) {
+            lastClickTime = curTime
+        }
+    }
+
+    fun onProductClick(productsEntity: ProductsEntity) {
         val curTime = System.currentTimeMillis()
         //防止連點判斷
         if (curTime - lastClickTime > 1000) {
@@ -258,6 +277,42 @@ class MemberViewModel(application: Application) :
                 return
             }
             adapter.setList(navbarEntity, memberViewModel)
+        }
+
+        //專屬推薦
+        @BindingAdapter("member_Products_adapter", "member_Products_recyclerview")
+        @JvmStatic
+        fun setMyProductsRecyclerViewList(
+            recyclerView: RecyclerView, productsEntity: MutableList<ProductsEntity>?,
+            memberViewModel: MemberViewModel
+        ) {
+            var adapter = recyclerView.adapter as? MemberProductItemAdapter
+            if (adapter == null) {
+                adapter = MemberProductItemAdapter()
+                recyclerView.adapter = adapter
+            }
+
+            val gridLayoutManager = GridLayoutManager(recyclerView.context, 2)
+            gridLayoutManager.orientation = RecyclerView.VERTICAL
+            // 自訂 SpanSizeLookup，確保每個項目佔用 1 個 span
+            gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return 1 // 每個項目佔用 1 個 span
+                }
+            }
+
+            recyclerView.layoutManager = gridLayoutManager
+
+            // 計算列間距並應用 ItemDecoration
+            val density = recyclerView.context.resources.displayMetrics.density
+            val columnSpacing = (8 * density).toInt() // 假設列間距為 8dp
+            recyclerView.addItemDecoration(MemberProductItemAdapter.HomeNavbarItemDecoration(columnSpacing))
+            recyclerView.itemAnimator = DefaultItemAnimator()
+
+            if (productsEntity == null) {
+                return
+            }
+            adapter.setList(productsEntity, memberViewModel)
         }
 
         //ImageView的共用設定

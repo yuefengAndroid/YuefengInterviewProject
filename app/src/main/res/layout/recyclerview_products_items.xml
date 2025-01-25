@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="productEntity"
+            type="com.example.yuefenginterviewproject.data.entity.ProductsEntity" />
+
+        <variable
+            name="memberAdapterItem"
+            type="com.example.yuefenginterviewproject.data.model.MemberViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/qfItem01"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/itemStr01"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:load_image="@{productEntity.ImgUrl}"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/itemStr01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{productEntity.Title}"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@+id/qfItem01"
+            app:layout_constraintRight_toRightOf="@+id/qfItem01"
+            app:layout_constraintTop_toBottomOf="@+id/qfItem01"
+            app:layout_constraintBottom_toTopOf="@+id/itemStr02"
+            tools:text="得意的一天 100%葵花油2Lx3+義大利橄欖油1Lx1" />
+
+        <TextView
+            android:id="@+id/itemStr02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@{productEntity.Money}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/itemStr01"
+            app:layout_constraintTop_toBottomOf="@+id/itemStr01"
+            tools:text="$399" />
+
+        <TextView
+            android:id="@+id/clickNextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{() -> memberAdapterItem.onProductClick(productEntity)}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
