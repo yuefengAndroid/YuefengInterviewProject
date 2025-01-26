@@ -1,6 +1,8 @@
 package com.example.yuefenginterviewproject
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.yuefenginterviewproject.data.model.MainHomeViewModel
 import com.example.yuefenginterviewproject.databinding.ActivityMainHomeBinding
+import com.example.yuefenginterviewproject.ui.cart.CartActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -21,6 +24,7 @@ class MainHomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainHomeBinding
     private lateinit var adapter: MainPagerAdapter
     private lateinit var mainHomeViewModel: MainHomeViewModel
+    private val REQUEST_CODE_CART = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,16 +49,22 @@ class MainHomeActivity : AppCompatActivity() {
         // 设置 TabLayout 的 Tab 选中监听器
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                // 点击 Tab 时切换页面
-                binding.viewPager.setCurrentItem(tab.position, false)
+                val position = tab.position
+                if (position == 4) {
+                    // 當選中購物車時，跳轉到 CartActivity
+                    navigateToCartActivity()
+                } else {
+                    // 切換 ViewPager 頁面
+                    binding.viewPager.setCurrentItem(position, false)
 
-                val tabText = tab.customView?.findViewById<TextView>(R.id.tab_text)
-                tabText?.setTextColor(ContextCompat.getColor(this@MainHomeActivity, R.color.red)) // 设置红色
+                    // 更新選中的 Tab 標題和圖示顏色
+                    val tabText = tab.customView?.findViewById<TextView>(R.id.tab_text)
+                    tabText?.setTextColor(ContextCompat.getColor(this@MainHomeActivity, R.color.red)) // 設置紅色
 
-                // 改变选中 Tab 的图标颜色为红色
-                val tabIcon = tab.customView?.findViewById<ImageView>(R.id.tab_icon)
-                tabIcon?.let {
-                    it.setColorFilter(ContextCompat.getColor(this@MainHomeActivity, R.color.red)) // 设置红色
+                    val tabIcon = tab.customView?.findViewById<ImageView>(R.id.tab_icon)
+                    tabIcon?.let {
+                        it.setColorFilter(ContextCompat.getColor(this@MainHomeActivity, R.color.red)) // 設置紅色
+                    }
                 }
             }
 
@@ -69,7 +79,10 @@ class MainHomeActivity : AppCompatActivity() {
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
-                // No-op
+                if (tab.position == 4) {
+                    // 如果重新选中购物车 Tab，重新跳转到 CartActivity
+                    navigateToCartActivity()
+                }
             }
         })
         setFirstTabRed()
@@ -131,6 +144,39 @@ class MainHomeActivity : AppCompatActivity() {
                 icon.setColorFilter(ContextCompat.getColor(this, R.color.red)) // 设置红色
             }
         }
+    }
+
+    private fun navigateToCartActivity() {
+        val intent = Intent(this, CartActivity::class.java)
+        startActivityForResult(intent, REQUEST_CODE_CART) // 使用 startActivityForResult
+    }
+
+    // 接收返回结果并重置到首页
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_CART && resultCode == Activity.RESULT_OK) {
+            val goToHomeTab = data?.getBooleanExtra("GO_TO_HOME_TAB", false) ?: false
+            if (goToHomeTab) {
+                resetToHomeTab()
+            }
+        }
+    }
+
+    // 重置到首页的逻辑
+    private fun resetToHomeTab() {
+        // 切换到首页
+        binding.viewPager.setCurrentItem(0, false)
+
+        // 设置 TabLayout 选中第一个 Tab
+        val firstTab = binding.tabLayout.getTabAt(0)
+        firstTab?.select()
+
+        // 更新第一个 Tab 的文字和图标颜色为红色
+        val tabText = firstTab?.customView?.findViewById<TextView>(R.id.tab_text)
+        tabText?.setTextColor(ContextCompat.getColor(this, R.color.red))
+
+        val tabIcon = firstTab?.customView?.findViewById<ImageView>(R.id.tab_icon)
+        tabIcon?.setColorFilter(ContextCompat.getColor(this, R.color.red))
     }
 }
 
