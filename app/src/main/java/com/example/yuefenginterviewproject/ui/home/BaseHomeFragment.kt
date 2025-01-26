@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.HomeViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentBaseHomeBinding
-import com.example.yuefenginterviewproject.ui.cart.CartFragment
+import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class BaseHomeFragment : Fragment() {
@@ -43,16 +43,16 @@ class BaseHomeFragment : Fragment() {
 
     private fun setupTabLayoutAndViewPager() {
         val fragmentList = listOf(
-            CartFragment(),
-            CartFragment(),
-            CartFragment(),
-            CartFragment(),
-            CartFragment(),
-            CartFragment(),
-            CartFragment(),
-            CartFragment(),
-            CartFragment(),
-            CartFragment()
+            HomeFragment(),
+            HomeFragment(),
+            HomeFragment(),
+            HomeFragment(),
+            HomeFragment(),
+            HomeFragment(),
+            HomeFragment(),
+            HomeFragment(),
+            HomeFragment(),
+            HomeFragment()
         )
 
         val tabTitles = listOf(
