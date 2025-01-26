@@ -33,7 +33,9 @@ import com.to.aboomy.pager2banner.IndicatorView
 
 class MemberViewModel(application: Application) :
     AndroidViewModel(application) {
-    private lateinit var memberRepository: MemberRepository
+
+    private val memberRepository: MemberRepository by lazy { MemberRepository() }
+
     val adBannerList = MutableLiveData<MutableList<StoreCouponEntity>>()
 
     val navbarList = MutableLiveData<MutableList<NavbarEntity>>()
@@ -49,9 +51,7 @@ class MemberViewModel(application: Application) :
     val myProductsList = MutableLiveData<MutableList<ProductsEntity>>()
 
     private var lastClickTime: Long = 0
-
-    fun setRepository(repository: MemberRepository) {
-        this.memberRepository = repository
+    init {
 
         memberRepository.getAdBannerData(object : MemberRepository.OnActivityBannerFinish {
             override fun onFinish(storeCouponEntity: MutableList<StoreCouponEntity>) {
@@ -101,6 +101,9 @@ class MemberViewModel(application: Application) :
             }
 
         })
+    }
+    fun setRepository(repository: MemberRepository) {
+
     }
 
     //首頁的廣告輪播點擊事件

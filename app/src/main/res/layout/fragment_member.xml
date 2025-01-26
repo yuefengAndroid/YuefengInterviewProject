@@ -82,7 +82,7 @@
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -12,16 +12,13 @@ class MemberFragment : BaseFragment<FragmentMemberBinding>() {
 
     override val resId: Int = R.layout.fragment_member
     private lateinit var loginButtonBinding: LayoutLoginButtonBinding
-    private lateinit var memberViewModel: MemberViewModel
+
+    private val memberViewModel: MemberViewModel by lazy {
+        ViewModelProvider(this)[MemberViewModel::class.java]
+    }
 
     override fun initAfterBinding() {
-        val memberRepository = MemberRepository()
-        memberViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MemberViewModel::class.java).apply {
-            setRepository(memberRepository) // 手动注入 Repository
-        }
+        binding.lifecycleOwner = viewLifecycleOwner // 設定 DataBinding 的生命周期擁有者
         binding.memberModel = memberViewModel
     }
 }
