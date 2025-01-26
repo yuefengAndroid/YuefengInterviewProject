@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.HomeViewModel
-import com.example.yuefenginterviewproject.databinding.FragmentHomeBinding
+import com.example.yuefenginterviewproject.databinding.FragmentBaseHomeBinding
 import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
-class HomeFragment : Fragment() {
+class BaseHomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentBaseHomeBinding
     private val homeViewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java) // 初始化 ViewModel
     }
@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentBaseHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner // 設定 DataBinding 的生命周期擁有者
         binding.homeModel = homeViewModel // 將 ViewModel 綁定到 Binding
 
@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
             "保養/彩妝", "旅遊/住宿券", "日用清潔", "生活家電", "寵物"
         )
         // 設置 ViewPager2 適配器
-        val adapter = HomePagerAdapter(this, fragmentList)
+        val adapter = BaseHomePagerAdapter(this, fragmentList)
         binding.homeViewpager.adapter = adapter
 
         // 使用 TabLayoutMediator 綁定 TabLayout 和 ViewPager2
