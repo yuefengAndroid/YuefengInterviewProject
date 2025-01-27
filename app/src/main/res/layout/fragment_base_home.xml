@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="homeModel"
-            type="com.example.yuefenginterviewproject.data.model.HomeViewModel" />
+            name="baseModel"
+            type="com.example.yuefenginterviewproject.data.model.BaseHomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
