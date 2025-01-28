@@ -1,14 +1,17 @@
 package com.example.yuefenginterviewproject.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.BaseHomeViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentBaseHomeBinding
+import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class BaseHomeFragment : Fragment() {
@@ -28,6 +31,19 @@ class BaseHomeFragment : Fragment() {
         binding.baseModel = baseHomeModel // 將 ViewModel 綁定到 Binding
 
         observeViewModel()
+
+        // 设置点击事件
+        binding.strdemo.setOnClickListener {
+            showCartFragment() // 显示 CartFragment
+        }
+        binding.iconSearch01.setOnClickListener {
+            showCartFragment() // 显示 CartFragment
+        }
+
+        binding.iconMenu.setOnClickListener {
+            hideCartFragment() // 隐藏 CartFragment
+        }
+
         return binding.root
     }
 
@@ -56,6 +72,79 @@ class BaseHomeFragment : Fragment() {
             resources.getColor(R.color.black, null),
             resources.getColor(R.color.red, null)
         )
+        binding.fragmentContainer.animate().alpha(1f).setDuration(300).start()
     }
 
+    private fun showCartFragment() {
+        val fragmentManager = childFragmentManager
+        val cartFragmentTag = "CartFragment"
+        // 替換 iconMenu 的圖標為 icon_back_ffffff_24
+        binding.iconMenu.setImageResource(R.drawable.icon_back_ffffff_24)
+        // 隱藏 iconSearch01 和 strdemo
+        binding.iconSearch01.visibility = View.GONE
+        binding.strdemo.visibility = View.GONE
+
+        // 顯示 inputSearch
+        binding.inputSearch.visibility = View.VISIBLE
+        binding.inputSearch.text = null
+        binding.inputSearch.requestFocus()
+
+        // 開啟鍵盤
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(binding.inputSearch, InputMethodManager.SHOW_IMPLICIT)
+
+        // 確認是否已經顯示 CartFragment，避免重複添加
+        if (fragmentManager.findFragmentByTag(cartFragmentTag) == null) {
+            val cartFragment = CartFragment()
+            fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, cartFragment, cartFragmentTag) // 使用 replace 替換內容
+                .commitAllowingStateLoss()
+
+            // 設置 FrameLayout 可見
+            binding.fragmentContainer.visibility = View.VISIBLE
+            binding.fragmentContainer.animate()
+                .alpha(1f)
+                .setDuration(300)
+                .start()
+            binding.homeTabLayout.visibility = View.INVISIBLE
+            binding.homeViewpager.visibility = View.INVISIBLE
+
+        }
+    }
+
+    private fun hideCartFragment() {
+        val fragmentManager = childFragmentManager
+        val cartFragmentTag = "CartFragment"
+        // 替換 iconMenu 的圖標為 icon_menu_24
+        binding.iconMenu.setImageResource(R.drawable.icon_menu_24)
+
+        // 顯示 iconSearch01 和 strdemo
+        binding.iconSearch01.visibility = View.VISIBLE
+        binding.strdemo.visibility = View.VISIBLE
+
+        // 關閉輸入鍵盤
+        val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(binding.inputSearch.windowToken, 0)
+
+        // 隱藏 inputSearch
+        binding.inputSearch.visibility = View.GONE
+        // 找到 CartFragment 並移除
+        val cartFragment = fragmentManager.findFragmentByTag(cartFragmentTag)
+        if (cartFragment != null) {
+            fragmentManager.beginTransaction()
+                .remove(cartFragment)
+                .commitAllowingStateLoss()
+
+            // 設置 FrameLayout 隱藏
+            binding.fragmentContainer.animate()
+                .alpha(0f)
+                .setDuration(300)
+                .withEndAction {
+                    binding.fragmentContainer.visibility = View.GONE
+                    binding.homeTabLayout.visibility = View.VISIBLE
+                    binding.homeViewpager.visibility = View.VISIBLE
+                }
+                .start()
+        }
+    }
 }
