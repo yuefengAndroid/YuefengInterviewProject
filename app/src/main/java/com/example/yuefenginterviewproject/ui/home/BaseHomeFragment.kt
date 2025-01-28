@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.BaseHomeViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentBaseHomeBinding
-import com.example.yuefenginterviewproject.ui.cart.CartFragment
+import com.example.yuefenginterviewproject.ui.member.SearchViewFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class BaseHomeFragment : Fragment() {
@@ -34,14 +34,14 @@ class BaseHomeFragment : Fragment() {
 
         // 设置点击事件
         binding.strdemo.setOnClickListener {
-            showCartFragment() // 显示 CartFragment
+            showSearchViewFragment()
         }
         binding.iconSearch01.setOnClickListener {
-            showCartFragment() // 显示 CartFragment
+            showSearchViewFragment()
         }
 
         binding.iconMenu.setOnClickListener {
-            hideCartFragment() // 隐藏 CartFragment
+            hideSearchViewFragment()
         }
 
         return binding.root
@@ -75,9 +75,9 @@ class BaseHomeFragment : Fragment() {
         binding.fragmentContainer.animate().alpha(1f).setDuration(300).start()
     }
 
-    private fun showCartFragment() {
+    private fun showSearchViewFragment() {
         val fragmentManager = childFragmentManager
-        val cartFragmentTag = "CartFragment"
+        val searchViewFragmentTag = "SearchViewFragment"
         // 替換 iconMenu 的圖標為 icon_back_ffffff_24
         binding.iconMenu.setImageResource(R.drawable.icon_back_ffffff_24)
         // 隱藏 iconSearch01 和 strdemo
@@ -94,10 +94,10 @@ class BaseHomeFragment : Fragment() {
         imm.showSoftInput(binding.inputSearch, InputMethodManager.SHOW_IMPLICIT)
 
         // 確認是否已經顯示 CartFragment，避免重複添加
-        if (fragmentManager.findFragmentByTag(cartFragmentTag) == null) {
-            val cartFragment = CartFragment()
+        if (fragmentManager.findFragmentByTag(searchViewFragmentTag) == null) {
+            val searchViewFragment = SearchViewFragment()
             fragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, cartFragment, cartFragmentTag) // 使用 replace 替換內容
+                .replace(R.id.fragmentContainer, searchViewFragment, searchViewFragmentTag) // 使用 replace 替換內容
                 .commitAllowingStateLoss()
 
             // 設置 FrameLayout 可見
@@ -112,9 +112,9 @@ class BaseHomeFragment : Fragment() {
         }
     }
 
-    private fun hideCartFragment() {
+    private fun hideSearchViewFragment() {
         val fragmentManager = childFragmentManager
-        val cartFragmentTag = "CartFragment"
+        val searchViewFragmentTag = "SearchViewFragment"
         // 替換 iconMenu 的圖標為 icon_menu_24
         binding.iconMenu.setImageResource(R.drawable.icon_menu_24)
 
@@ -129,7 +129,7 @@ class BaseHomeFragment : Fragment() {
         // 隱藏 inputSearch
         binding.inputSearch.visibility = View.GONE
         // 找到 CartFragment 並移除
-        val cartFragment = fragmentManager.findFragmentByTag(cartFragmentTag)
+        val cartFragment = fragmentManager.findFragmentByTag(searchViewFragmentTag)
         if (cartFragment != null) {
             fragmentManager.beginTransaction()
                 .remove(cartFragment)
