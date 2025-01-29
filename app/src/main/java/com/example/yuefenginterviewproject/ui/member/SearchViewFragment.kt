@@ -39,7 +39,7 @@ class SearchViewFragment : Fragment() {
             binding.tcTagMore2.tagTextColor = ContextCompat.getColor(ctx, R.color.color_272727)
             binding.tcTagMore2.tagBorderColor = ContextCompat.getColor(ctx, R.color.color_ededed)
         }
-        val list = arrayListOf<String?>("日安玩美","資生堂","禮盒","衛生紙","貓砂","溫泉泡湯券","Timberland")
+        val list = arrayListOf<String?>("日安玩美","資生堂","禮盒","國際牌冰箱","衛生紙","溫泉泡湯券","貓砂")
         val list2 = arrayListOf<String?>("衛生紙","資生堂")
         binding.tcTagMore.tags = list
         binding.tcTagMore2.tags = list2
