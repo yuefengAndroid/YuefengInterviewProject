@@ -36,6 +36,9 @@ class BaseHomeFragment : Fragment() {
         binding.strdemo.setOnClickListener {
             showSearchViewFragment()
         }
+        binding.searchText.setOnClickListener {
+            showSearchViewFragment()
+        }
         binding.iconSearch01.setOnClickListener {
             showSearchViewFragment()
         }
