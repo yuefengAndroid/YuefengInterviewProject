@@ -12,6 +12,7 @@ import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.BaseHomeViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentBaseHomeBinding
 import com.example.yuefenginterviewproject.ui.member.SearchViewFragment
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class BaseHomeFragment : Fragment() {
@@ -63,11 +64,24 @@ class BaseHomeFragment : Fragment() {
         // 設置 ViewPager2 適配器
         val adapter = BaseHomePagerAdapter(this, fragments)
         binding.homeViewpager.adapter = adapter
+        binding.homeViewpager.isUserInputEnabled = false // 禁用滑动
 
         // 使用 TabLayoutMediator 綁定 TabLayout 和 ViewPager2
         TabLayoutMediator(binding.homeTabLayout, binding.homeViewpager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+
+        // 監聽 Tab 點擊事件，使用 setCurrentItem(position, false) 關閉切換動畫
+        binding.homeTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.let {
+                    binding.homeViewpager.setCurrentItem(it.position, false) // 這裡關閉切換動畫
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
 
         // 自定義 TabLayout 選中顏色和下底線顏色 (如果在XML有設定,則以下設定顏色程式可以省略)
         binding.homeTabLayout.setSelectedTabIndicatorColor(resources.getColor(R.color.red, null))

@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.yuefenginterviewproject.data.repository.BaseHomeRepository
 import com.example.yuefenginterviewproject.data.repository.BestsellersRepository
+import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
 import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeFragment
 
@@ -25,7 +26,7 @@ class BestsellersViewModel(application: Application) : AndroidViewModel(applicat
         // 初始化 Fragment 列表和 Tab 標題
         val fragments = listOf(
             HomeFragment(),
-            HomeFragment(),
+            CartFragment(),
             HomeFragment(),
             HomeFragment(),
             HomeFragment(),
