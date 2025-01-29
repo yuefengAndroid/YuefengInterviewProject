@@ -15,11 +15,169 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/serachItem01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SearchViewFragment"
-        android:textSize="24sp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_ffffff_radius16"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="衛生紙"
+        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchBg" />
 
+    <TextView
+        android:id="@+id/serachItem02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_ffffff_radius16"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="資生堂"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/serachItem01"
+        app:layout_constraintTop_toBottomOf="@+id/searchBg" />
+
+
+    <TextView
+        android:id="@+id/hotTitlebar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="60dp"
+        android:text="熱門搜尋關鍵字"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serachItem01" />
+
+    <TextView
+        android:id="@+id/serachHotItem01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_ffffff_radius16"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="日安玩美"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hotTitlebar" />
+
+    <TextView
+        android:id="@+id/serachHotItem02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bg_ffffff_radius16"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="資生堂"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/serachHotItem01"
+        app:layout_constraintTop_toTopOf="@+id/serachHotItem01"
+        app:layout_constraintBottom_toBottomOf="@+id/serachHotItem01"/>
+
+    <TextView
+        android:id="@+id/serachHotItem03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bg_ffffff_radius16"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="禮盒"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/serachHotItem02"
+        app:layout_constraintTop_toTopOf="@+id/serachHotItem01"
+        app:layout_constraintBottom_toBottomOf="@+id/serachHotItem01"/>
+
+    <TextView
+        android:id="@+id/serachHotItem04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bg_ffffff_radius16"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="衛生紙"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/serachHotItem03"
+        app:layout_constraintTop_toTopOf="@+id/serachHotItem01"
+        app:layout_constraintBottom_toBottomOf="@+id/serachHotItem01"/>
+
+    <TextView
+        android:id="@+id/serachHotItem05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bg_ffffff_radius16"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="貓砂"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/serachHotItem04"
+        app:layout_constraintTop_toTopOf="@+id/serachHotItem01"
+        app:layout_constraintBottom_toBottomOf="@+id/serachHotItem01"/>
+
+    <TextView
+        android:id="@+id/serachHotItem06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_ffffff_radius16"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="溫泉泡湯券"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@+id/serachHotItem01"
+        app:layout_constraintTop_toBottomOf="@+id/serachHotItem01" />
+
+    <TextView
+        android:id="@+id/serachHotItem07"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bg_ffffff_radius16"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="Timberland"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/serachHotItem06"
+        app:layout_constraintTop_toTopOf="@+id/serachHotItem06"
+        app:layout_constraintBottom_toBottomOf="@+id/serachHotItem06"/>
+
+     <TextView
+         android:id="@+id/itemline01"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_marginTop="20dp"
+         android:background="@color/color_ededed"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/serachHotItem07"
+         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
