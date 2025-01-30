@@ -48,13 +48,6 @@
             app:layout_constraintLeft_toRightOf="@+id/iconBack"
             app:layout_constraintTop_toTopOf="@+id/iconBack" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CartFragment"
-            android:textSize="24sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchBg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
