@@ -34,6 +34,30 @@ class SearchRepository {
         })
     }
 
+    fun getProducts2Data(task: OnProductsFinish) {
+        val myTreasureBoxList = mutableListOf<SearchProduct>()
+        dbReference = FirebaseDatabase.getInstance().getReference("Data")
+        dbReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (item in snapshot.child("product2").children) {
+                        val activityBannerItems = item.key
+                        val entity = snapshot.child("product2").child(activityBannerItems.toString())
+                            .getValue(SearchProduct::class.java)
+                        if (entity != null) {
+                            myTreasureBoxList.add(entity)
+                        }
+                    }
+                    task.onFinish(myTreasureBoxList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
     interface OnProductsFinish {
         fun onFinish(productsEntity: MutableList<SearchProduct>)
     }

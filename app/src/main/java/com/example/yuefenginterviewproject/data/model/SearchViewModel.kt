@@ -10,7 +10,9 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
 
     private val searchRepository: SearchRepository by lazy { SearchRepository() }
     val myProductsList = MutableLiveData<MutableList<SearchProduct>>()
+    val myProductsList2 = MutableLiveData<MutableList<SearchProduct>>()
     val searchListsLiveData = MutableLiveData<Pair<List<String>, List<String>>>()
+
 
     init {
         searchListsLiveData.value = searchRepository.getTagLists()
@@ -18,6 +20,12 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
         searchRepository.getProductsData(object : SearchRepository.OnProductsFinish {
             override fun onFinish(searchEntity: MutableList<SearchProduct>) {
                 myProductsList.postValue(searchEntity)
+            }
+        })
+
+        searchRepository.getProducts2Data(object : SearchRepository.OnProductsFinish {
+            override fun onFinish(searchEntity: MutableList<SearchProduct>) {
+                myProductsList2.postValue(searchEntity)
             }
         })
     }

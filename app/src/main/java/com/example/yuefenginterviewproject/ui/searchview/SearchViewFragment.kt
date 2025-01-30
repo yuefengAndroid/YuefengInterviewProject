@@ -21,6 +21,8 @@ class SearchViewFragment : Fragment() {
         ViewModelProvider(this).get(SearchViewModel::class.java) // 初始化 ViewModel
     }
     private lateinit var adapter: SearchRecommendListAdapter
+    private var isRecommendSelected = true // 記錄當前選擇的列表
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,30 +77,56 @@ class SearchViewFragment : Fragment() {
         }
 
         baseHomeModel.myProductsList.observe(viewLifecycleOwner) { products ->
-            adapter.list.clear()
-            adapter.list.addAll(products)
-            adapter.notifyDataSetChanged()
+            if (isRecommendSelected) {
+                adapter.list.clear()
+                adapter.list.addAll(products)
+                adapter.notifyDataSetChanged()
+            }
+        }
+
+        baseHomeModel.myProductsList2.observe(viewLifecycleOwner) { products ->
+            if (!isRecommendSelected) {
+                adapter.list.clear()
+                adapter.list.addAll(products)
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 
     fun showRecommendList() {
-        binding.layoutRecommend.background = ContextCompat.getDrawable(requireContext(), R.drawable.shape_search_tab)
-        binding.ivRecommend.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_vip_fff_20))
-        binding.tvRecommend.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_ffffff))
-
-        binding.layoutHottopic.background = null
-        binding.ivHottopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_solid_fire_default_20))
-        binding.tvHottopic.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_323232))
+        isRecommendSelected = true
+        updateUI(isRecommendSelected)
+        adapter.list.clear()
+        adapter.list.addAll(baseHomeModel.myProductsList.value ?: emptyList())
+        adapter.notifyDataSetChanged()
     }
 
     fun showHotTopicList() {
-        binding.layoutHottopic.background = ContextCompat.getDrawable(requireContext(), R.drawable.shape_search_tab)
-        binding.ivHottopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_solid_fire_fff_24))
-        binding.tvHottopic.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_ffffff))
+        isRecommendSelected = false
+        updateUI(isRecommendSelected)
+        adapter.list.clear()
+        adapter.list.addAll(baseHomeModel.myProductsList2.value ?: emptyList())
+        adapter.notifyDataSetChanged()
+    }
 
-        binding.layoutRecommend.background = null
-        binding.ivRecommend.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_vip_default_21))
-        binding.tvRecommend.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_323232))
+    private fun updateUI(isRecommend: Boolean) {
+        if (isRecommend) {
+            binding.layoutRecommend.background = ContextCompat.getDrawable(requireContext(), R.drawable.shape_search_tab)
+            binding.ivRecommend.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_vip_fff_20))
+            binding.tvRecommend.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_ffffff))
+
+            binding.layoutHottopic.background = null
+            binding.ivHottopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_solid_fire_default_20))
+            binding.tvHottopic.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_323232))
+        } else {
+            binding.layoutHottopic.background = ContextCompat.getDrawable(requireContext(), R.drawable.shape_search_tab)
+            binding.ivHottopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_solid_fire_fff_24))
+            binding.tvHottopic.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_ffffff))
+
+            binding.layoutRecommend.background = null
+            binding.ivRecommend.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_vip_default_21))
+            binding.tvRecommend.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_323232))
+        }
     }
 
 }
