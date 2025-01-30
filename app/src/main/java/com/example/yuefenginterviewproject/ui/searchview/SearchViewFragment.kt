@@ -6,13 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yuefenginterviewproject.ColorFactory
 import com.example.yuefenginterviewproject.R
+import com.example.yuefenginterviewproject.data.model.BaseHomeViewModel
+import com.example.yuefenginterviewproject.data.model.SearchViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentSearchViewBinding
 
 
 class SearchViewFragment : Fragment() {
     private lateinit var binding: FragmentSearchViewBinding
+    private val baseHomeModel: SearchViewModel by lazy {
+        ViewModelProvider(this).get(SearchViewModel::class.java) // 初始化 ViewModel
+    }
+    private lateinit var adapter: SearchRecommendListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,10 +47,8 @@ class SearchViewFragment : Fragment() {
             binding.tcTagMore2.tagTextColor = ContextCompat.getColor(ctx, R.color.color_272727)
             binding.tcTagMore2.tagBorderColor = ContextCompat.getColor(ctx, R.color.color_ededed)
         }
-        val list = arrayListOf<String?>("日安玩美","資生堂","禮盒","國際牌冰箱","衛生紙","溫泉泡湯券","貓砂")
-        val list2 = arrayListOf<String?>("衛生紙","資生堂")
-        binding.tcTagMore.tags = list
-        binding.tcTagMore2.tags = list2
+        setupRecyclerView()
+        observeViewModel()
 
         binding.layoutRecommend.setOnClickListener {
             showRecommendList()
@@ -51,7 +57,28 @@ class SearchViewFragment : Fragment() {
         binding.layoutHottopic.setOnClickListener {
             showHotTopicList()
         }
+
         return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        adapter = SearchRecommendListAdapter(this, arrayListOf()) // 初始 Adapter，空列表
+        binding.rvContainer.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvContainer.adapter = adapter
+    }
+    private fun observeViewModel() {
+        // 觀察 ViewModel 的 LiveData
+        baseHomeModel.searchListsLiveData.observe(viewLifecycleOwner) { tags ->
+            val (list1, list2) = tags
+            binding.tcTagMore.tags = list1
+            binding.tcTagMore2.tags = list2
+        }
+
+        baseHomeModel.myProductsList.observe(viewLifecycleOwner) { products ->
+            adapter.list.clear()
+            adapter.list.addAll(products)
+            adapter.notifyDataSetChanged()
+        }
     }
 
     fun showRecommendList() {
