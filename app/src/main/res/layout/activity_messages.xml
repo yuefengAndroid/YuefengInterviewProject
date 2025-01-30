@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="baseModel"
+            type="com.example.yuefenginterviewproject.data.model.MessagesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,24 +51,27 @@
             app:layout_constraintLeft_toRightOf="@+id/iconBack"
             app:layout_constraintTop_toTopOf="@+id/iconBack" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MessagesActivity"
-            android:textSize="24sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchBg" />
-
-        <TextView
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/messageTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="MessagesActivity55554"
-            android:textSize="24sp"
-            android:gravity="center"
+            android:layout_height="45dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/searchBg"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/red"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/CustomTabText"
+            app:tabTextColor="@color/black" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/message_viewpager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/messageTabLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

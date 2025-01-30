@@ -14,7 +14,6 @@ class BaseHomeViewModel(application: Application) : AndroidViewModel(application
     private val homeRepository: BaseHomeRepository by lazy { BaseHomeRepository() }
 
     // LiveData 用於數據綁定
-    val someLiveData = MutableLiveData<String>()
     val fragmentListLiveData = MutableLiveData<List<Fragment>>()
     val tabTitlesLiveData = MutableLiveData<List<String>>()
 
@@ -22,7 +21,6 @@ class BaseHomeViewModel(application: Application) : AndroidViewModel(application
     val adapterLiveData = MutableLiveData<BaseHomePagerAdapter>()
 
     init {
-        someLiveData.value = homeRepository.getData()
 
         // 初始化 Fragment 列表和 Tab 標題
         val fragments = listOf(
