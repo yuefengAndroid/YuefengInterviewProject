@@ -1,6 +1,7 @@
 package com.example.yuefenginterviewproject.ui.tvhot
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.TvHotViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentTvHotBinding
+import com.example.yuefenginterviewproject.ui.cart.CartActivity
 import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
+import com.example.yuefenginterviewproject.ui.messages.MessagesActivity
 import com.example.yuefenginterviewproject.ui.searchview.SearchViewFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -46,6 +49,16 @@ class TvHotFragment : Fragment() {
 
         binding.iconMenu.setOnClickListener {
             hideSearchViewFragment()
+        }
+
+        binding.iconCart.setOnClickListener {
+            val intent = Intent(requireContext(), CartActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.iconInformation.setOnClickListener {
+            val intent = Intent(requireContext(), MessagesActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root
