@@ -1,28 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/searchTab"
+    <data>
+
+        <variable
+            name="baseModel"
+            type="com.example.yuefenginterviewproject.data.model.TvHotViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/color_cc1e05"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:layout_height="match_parent"
+        tools:context=".ui.home.BaseHomeFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TVHotFragment"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        <TextView
+            android:id="@+id/searchBg"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/color_cc1e05"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/iconMenu"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/icon_menu_24"
+            app:layout_constraintBottom_toBottomOf="@+id/searchBg"
+            app:layout_constraintLeft_toLeftOf="@+id/searchBg"
+            app:layout_constraintRight_toLeftOf="@+id/searchText"
+            app:layout_constraintTop_toTopOf="@+id/searchBg" />
+
+        <ImageView
+            android:id="@+id/iconBack"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/icon_back_ffffff_24"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/searchBg"
+            app:layout_constraintLeft_toLeftOf="@+id/searchBg"
+            app:layout_constraintRight_toLeftOf="@+id/searchText"
+            app:layout_constraintTop_toTopOf="@+id/searchBg" />
+
+        <TextView
+            android:id="@+id/searchText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_ffffff_radius24"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/searchBg"
+            app:layout_constraintLeft_toRightOf="@+id/iconMenu"
+            app:layout_constraintRight_toLeftOf="@+id/iconCart"
+            app:layout_constraintTop_toTopOf="@id/searchBg" />
+
+        <ImageView
+            android:id="@+id/iconSearch01"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/icon_search_black_24"
+            app:layout_constraintBottom_toBottomOf="@+id/searchText"
+            app:layout_constraintLeft_toLeftOf="@+id/searchText"
+            app:layout_constraintRight_toLeftOf="@+id/strdemo"
+            app:layout_constraintTop_toTopOf="@+id/searchText" />
+
+        <TextView
+            android:id="@+id/strdemo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="請輸入"
+            app:layout_constraintBottom_toBottomOf="@+id/iconSearch01"
+            app:layout_constraintLeft_toRightOf="@+id/iconSearch01"
+            app:layout_constraintTop_toTopOf="@+id/iconSearch01" />
+
+        <ImageView
+            android:id="@+id/iconMic"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/icon_mic_24"
+            app:layout_constraintBottom_toBottomOf="@+id/searchText"
+            app:layout_constraintRight_toRightOf="@+id/searchText"
+            app:layout_constraintTop_toTopOf="@+id/searchText" />
+
+        <EditText
+            android:id="@+id/inputSearch"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="@null"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/searchText"
+            app:layout_constraintLeft_toLeftOf="@+id/searchText"
+            app:layout_constraintRight_toLeftOf="@+id/iconMic"
+            app:layout_constraintTop_toTopOf="@id/searchText" />
+
+        <ImageView
+            android:id="@+id/iconInformation"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/icon_notifications_none_24"
+            app:layout_constraintBottom_toBottomOf="@+id/searchText"
+            app:layout_constraintRight_toRightOf="@+id/searchBg"
+            app:layout_constraintTop_toTopOf="@+id/searchText" />
+
+        <ImageView
+            android:id="@+id/iconCart"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/icon_shopping_cart_ffffff"
+            app:layout_constraintBottom_toBottomOf="@+id/searchText"
+            app:layout_constraintLeft_toRightOf="@+id/searchText"
+            app:layout_constraintRight_toLeftOf="@+id/iconInformation"
+            app:layout_constraintTop_toTopOf="@+id/searchText" />
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/homeTabLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBg"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/red"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/red"
+            app:tabTextColor="@color/black" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/home_viewpager4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homeTabLayout4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

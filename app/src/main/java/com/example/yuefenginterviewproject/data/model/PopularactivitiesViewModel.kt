@@ -4,18 +4,18 @@ import android.app.Application
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.yuefenginterviewproject.data.repository.BestsellersRepository
+import com.example.yuefenginterviewproject.data.repository.popularactivitiesRepository
 import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
 import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeFragment
 
-class BestsellersViewModel(application: Application) : AndroidViewModel(application) {
+class PopularactivitiesViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val homeRepository: BestsellersRepository by lazy { BestsellersRepository() }
+    private val homeRepository: popularactivitiesRepository by lazy { popularactivitiesRepository() }
 
     // LiveData 用於數據綁定
-    val fragmentListLiveData = MutableLiveData<List<Fragment>>()
-    val tabTitlesLiveData = MutableLiveData<List<String>>()
+    val fragmentListLiveData3 = MutableLiveData<List<Fragment>>()
+    val tabTitlesLiveData3 = MutableLiveData<List<String>>()
 
     // 適配器 LiveData
     val adapterLiveData = MutableLiveData<BaseHomePagerAdapter>()
@@ -38,8 +38,8 @@ class BestsellersViewModel(application: Application) : AndroidViewModel(applicat
 
         val tabTitles = homeRepository.getTabTitles()
 
-        fragmentListLiveData.value = fragments
-        tabTitlesLiveData.value = tabTitles
+        fragmentListLiveData3.value = fragments
+        tabTitlesLiveData3.value = tabTitles
 
     }
 }

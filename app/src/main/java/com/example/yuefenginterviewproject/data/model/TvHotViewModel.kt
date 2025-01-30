@@ -4,18 +4,18 @@ import android.app.Application
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.yuefenginterviewproject.data.repository.BestsellersRepository
+import com.example.yuefenginterviewproject.data.repository.TvHotRepository
 import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
 import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeFragment
 
-class BestsellersViewModel(application: Application) : AndroidViewModel(application) {
+class TvHotViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val homeRepository: BestsellersRepository by lazy { BestsellersRepository() }
+    private val homeRepository: TvHotRepository by lazy { TvHotRepository() }
 
     // LiveData 用於數據綁定
-    val fragmentListLiveData = MutableLiveData<List<Fragment>>()
-    val tabTitlesLiveData = MutableLiveData<List<String>>()
+    val fragmentListLiveData4 = MutableLiveData<List<Fragment>>()
+    val tabTitlesLiveData4 = MutableLiveData<List<String>>()
 
     // 適配器 LiveData
     val adapterLiveData = MutableLiveData<BaseHomePagerAdapter>()
@@ -28,18 +28,13 @@ class BestsellersViewModel(application: Application) : AndroidViewModel(applicat
             CartFragment(),
             HomeFragment(),
             HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
             HomeFragment()
-        )// 模擬 10 個 HomeFragment
+        )// 模擬 5 個 HomeFragment
 
         val tabTitles = homeRepository.getTabTitles()
 
-        fragmentListLiveData.value = fragments
-        tabTitlesLiveData.value = tabTitles
+        fragmentListLiveData4.value = fragments
+        tabTitlesLiveData4.value = tabTitles
 
     }
 }
