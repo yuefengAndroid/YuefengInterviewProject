@@ -1,4 +1,4 @@
-package com.example.yuefenginterviewproject.ui.member
+package com.example.yuefenginterviewproject.ui.searchview
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ class SearchViewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSearchViewBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner // 設定 DataBinding 的生命周期擁有者
@@ -43,7 +43,35 @@ class SearchViewFragment : Fragment() {
         val list2 = arrayListOf<String?>("衛生紙","資生堂")
         binding.tcTagMore.tags = list
         binding.tcTagMore2.tags = list2
+
+        binding.layoutRecommend.setOnClickListener {
+            showRecommendList()
+        }
+
+        binding.layoutHottopic.setOnClickListener {
+            showHotTopicList()
+        }
         return binding.root
+    }
+
+    fun showRecommendList() {
+        binding.layoutRecommend.background = ContextCompat.getDrawable(requireContext(), R.drawable.shape_search_tab)
+        binding.ivRecommend.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_vip_fff_20))
+        binding.tvRecommend.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_ffffff))
+
+        binding.layoutHottopic.background = null
+        binding.ivHottopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_solid_fire_default_20))
+        binding.tvHottopic.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_323232))
+    }
+
+    fun showHotTopicList() {
+        binding.layoutHottopic.background = ContextCompat.getDrawable(requireContext(), R.drawable.shape_search_tab)
+        binding.ivHottopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_solid_fire_fff_24))
+        binding.tvHottopic.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_ffffff))
+
+        binding.layoutRecommend.background = null
+        binding.ivRecommend.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_vip_default_21))
+        binding.tvRecommend.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_323232))
     }
 
 }

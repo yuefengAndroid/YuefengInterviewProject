@@ -12,7 +12,7 @@ import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.TvHotViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentTvHotBinding
 import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
-import com.example.yuefenginterviewproject.ui.member.SearchViewFragment
+import com.example.yuefenginterviewproject.ui.searchview.SearchViewFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

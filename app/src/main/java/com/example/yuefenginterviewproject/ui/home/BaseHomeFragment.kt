@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.BaseHomeViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentBaseHomeBinding
-import com.example.yuefenginterviewproject.ui.member.SearchViewFragment
+import com.example.yuefenginterviewproject.ui.searchview.SearchViewFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
