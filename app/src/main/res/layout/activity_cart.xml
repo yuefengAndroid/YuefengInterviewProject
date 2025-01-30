@@ -12,15 +12,42 @@
         android:layout_height="match_parent"
         tools:context=".ui.cart.CartActivity">
 
+        <ImageView
+            android:id="@+id/iconBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/icon_back_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_ac_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="48dp"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:text="購物車"
+            android:textColor="@color/color_323232"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iconBack"
+            app:layout_constraintLeft_toRightOf="@+id/iconBack"
+            app:layout_constraintTop_toTopOf="@+id/iconBack" />
+
         <TextView
             android:id="@+id/backText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CartActivity123456"
             android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,26 +1,28 @@
 package com.example.yuefenginterviewproject.ui.cart
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.yuefenginterviewproject.R
+import androidx.fragment.app.Fragment
+import com.example.yuefenginterviewproject.databinding.FragmentCartBinding
 
 class CartFragment : Fragment() {
+    private lateinit var binding: FragmentCartBinding
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+    ): View {
+        binding = FragmentCartBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner // 設定 DataBinding 的生命周期擁有者
+
+        binding.iconBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        return binding.root
     }
 
 }

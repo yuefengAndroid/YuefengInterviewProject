@@ -15,6 +15,13 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // 初始化 DataBinding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cart)
+        binding.iconBack.setOnClickListener {
+            val intent = Intent().apply {
+                putExtra("GO_TO_HOME_TAB", true) // 向 MainHomeActivity 传递数据
+            }
+            setResult(Activity.RESULT_OK, intent) // 设置结果
+            finish() // 结束当前 Activity
+        }
 
         // 设置返回按钮的点击事件
         binding.backText.setOnClickListener {
