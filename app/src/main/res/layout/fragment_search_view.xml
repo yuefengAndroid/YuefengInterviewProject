@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout>
 
     <data>
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.cart.CartFragment">
 
+        <!-- 搜尋背景 -->
         <TextView
             android:id="@+id/searchBg"
             android:layout_width="match_parent"
@@ -20,181 +21,174 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.yuefenginterviewproject.TagContainerLayout
-            android:id="@+id/tc_tag_more2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
-            app:container_background_color="#00000000"
-            app:container_border_color="#00000000"
-            app:container_enable_drag="false"
-            app:horizontal_interval="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchBg"
-            app:tag_clickable="true"
-            app:vertical_interval="10dp" />
-
-        <TextView
-            android:id="@+id/hotTitlebar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
-            android:text="熱門搜尋關鍵字"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tc_tag_more2" />
-
-        <com.example.yuefenginterviewproject.TagContainerLayout
-            android:id="@+id/tc_tag_more"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="10dp"
-            app:container_background_color="#00000000"
-            app:container_border_color="#00000000"
-            app:container_enable_drag="false"
-            app:horizontal_interval="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hotTitlebar"
-            app:tag_clickable="true"
-            app:vertical_interval="10dp" />
-
-        <TextView
+        <!-- 新增 NestedScrollView -->
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/color_f7f7f7"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tc_tag_more" />
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/searchBg"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_f7f7f7"
-            tools:ignore="UseCompoundDrawables"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tc_tag_more">
-
-            <LinearLayout
-                android:id="@+id/layout_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="17dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="@+id/cv_container"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:id="@+id/layout_recommend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/shape_search_tab"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/iv_recommend"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="16dp"
-                        android:src="@drawable/icon_vip_fff_20" />
-
-                    <TextView
-                        android:id="@+id/tv_recommend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginEnd="16dp"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="專屬推薦"
-                        android:textColor="@color/color_ffffff" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_hottopic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/iv_hottopic"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="16dp"
-                        android:src="@drawable/icon_solid_fire_default_20" />
-
-                    <TextView
-                        android:id="@+id/tv_hottopic"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginEnd="16dp"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="發燒話題"
-                        android:textColor="@color/color_323232" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/cv_container"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/bg_ff6291_no_top_shadow"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_tab">
+                android:layout_height="wrap_content">
 
-                <androidx.cardview.widget.CardView
+                <!-- 標籤區塊 -->
+                <com.example.yuefenginterviewproject.TagContainerLayout
+                    android:id="@+id/tc_tag_more2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginEnd="1dp"
-                    android:layout_marginBottom="1dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="0dp">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/color_white"
-                        android:paddingTop="3dp" />
-
-                </androidx.cardview.widget.CardView>
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    app:container_background_color="#00000000"
+                    app:container_border_color="#00000000"
+                    app:container_enable_drag="false"
+                    app:horizontal_interval="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tag_clickable="true"
+                    app:vertical_interval="10dp" />
 
                 <TextView
+                    android:id="@+id/hotTitlebar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="10dp"
+                    android:text="熱門搜尋關鍵字"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tc_tag_more2" />
+
+                <com.example.yuefenginterviewproject.TagContainerLayout
+                    android:id="@+id/tc_tag_more"
                     android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginEnd="3dp"
-                    android:background="@drawable/bg_ff6291_for_deco" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="10dp"
+                    app:container_background_color="#00000000"
+                    app:container_border_color="#00000000"
+                    app:container_enable_drag="false"
+                    app:horizontal_interval="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hotTitlebar"
+                    app:tag_clickable="true"
+                    app:vertical_interval="10dp" />
 
-            </FrameLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- 底部區塊 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_f7f7f7"
+                    tools:ignore="UseCompoundDrawables"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tc_tag_more">
 
+                    <LinearLayout
+                        android:id="@+id/layout_tab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="@+id/cv_container"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:id="@+id/layout_recommend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/shape_search_tab"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/iv_recommend"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/icon_vip_fff_20" />
+
+                            <TextView
+                                android:id="@+id/tv_recommend"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="專屬推薦"
+                                android:textColor="@color/color_ffffff" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_hottopic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/iv_hottopic"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/icon_solid_fire_default_20" />
+
+                            <TextView
+                                android:id="@+id/tv_hottopic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="發燒話題"
+                                android:textColor="@color/color_323232" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:id="@+id/cv_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/bg_ff6291_no_top_shadow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_tab">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginEnd="1dp"
+                            android:layout_marginBottom="1dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:background="@color/color_white"
+                                android:paddingTop="3dp" />
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
