@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <!-- 可以在這裡定義 ViewModel 或變數 -->
+        <variable
+            name="cartViewModel"
+            type="com.example.yuefenginterviewproject.data.model.CartViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,16 +14,24 @@
         android:layout_height="match_parent"
         tools:context=".ui.cart.CartActivity">
 
+        <TextView
+            android:id="@+id/searchBg"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/iconBack"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp" 
             android:layout_marginEnd="8dp"
             android:src="@drawable/icon_back_24"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/searchBg"
+            app:layout_constraintBottom_toBottomOf="@+id/searchBg"/>
 
         <TextView
             android:id="@+id/tv_ac_title"
@@ -39,15 +49,14 @@
             app:layout_constraintLeft_toRightOf="@+id/iconBack"
             app:layout_constraintTop_toTopOf="@+id/iconBack" />
 
-        <TextView
-            android:id="@+id/backText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CartActivity123456"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartItemView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/color_ededed"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBg"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
