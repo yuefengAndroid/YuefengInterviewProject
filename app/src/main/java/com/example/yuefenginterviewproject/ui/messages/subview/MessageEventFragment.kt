@@ -13,7 +13,7 @@ import com.example.yuefenginterviewproject.databinding.FragmentMessageEventBindi
 class MessageEventFragment : Fragment() {
     private lateinit var binding: FragmentMessageEventBinding
     private val baseEventModel: MessageEventViewModel by lazy {
-        ViewModelProvider(this).get(MessageEventViewModel::class.java) // 初始化 ViewModel
+        ViewModelProvider(this)[MessageEventViewModel::class.java] // 初始化 ViewModel
     }
     private lateinit var adapter: MessageEventListAdapter
 

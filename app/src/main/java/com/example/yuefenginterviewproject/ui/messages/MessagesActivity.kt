@@ -2,13 +2,12 @@ package com.example.yuefenginterviewproject.ui.messages
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.yuefenginterviewproject.R
-import com.example.yuefenginterviewproject.data.model.BaseHomeViewModel
 import com.example.yuefenginterviewproject.data.model.MessagesViewModel
 import com.example.yuefenginterviewproject.databinding.ActivityMessagesBinding
 import com.google.android.material.tabs.TabLayout
@@ -17,7 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MessagesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMessagesBinding
     private val messagesViewModel: MessagesViewModel by lazy {
-        ViewModelProvider(this).get(MessagesViewModel::class.java) // 初始化 ViewModel
+        ViewModelProvider(this)[MessagesViewModel::class.java] // 初始化 ViewModel
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

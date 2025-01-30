@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yuefenginterviewproject.ColorFactory
 import com.example.yuefenginterviewproject.R
-import com.example.yuefenginterviewproject.data.model.BaseHomeViewModel
 import com.example.yuefenginterviewproject.data.model.SearchViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentSearchViewBinding
 
@@ -18,7 +17,7 @@ import com.example.yuefenginterviewproject.databinding.FragmentSearchViewBinding
 class SearchViewFragment : Fragment() {
     private lateinit var binding: FragmentSearchViewBinding
     private val baseHomeModel: SearchViewModel by lazy {
-        ViewModelProvider(this).get(SearchViewModel::class.java) // 初始化 ViewModel
+        ViewModelProvider(this)[SearchViewModel::class.java] // 初始化 ViewModel
     }
     private lateinit var adapter: SearchRecommendListAdapter
     private var isRecommendSelected = true // 記錄當前選擇的列表

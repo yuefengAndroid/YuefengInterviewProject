@@ -22,7 +22,7 @@ class BaseHomeFragment : Fragment() {
 
     private lateinit var binding: FragmentBaseHomeBinding
     private val baseHomeModel: BaseHomeViewModel by lazy {
-        ViewModelProvider(this).get(BaseHomeViewModel::class.java) // 初始化 ViewModel
+        ViewModelProvider(this)[BaseHomeViewModel::class.java] // 初始化 ViewModel
     }
 
     override fun onCreateView(
