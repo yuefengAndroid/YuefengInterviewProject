@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.yuefenginterviewproject.data.repository.BestsellersRepository
+import com.example.yuefenginterviewproject.ui.bestsellers.subview3.SubBestsellers01Fragment
+import com.example.yuefenginterviewproject.ui.bestsellers.subview3.SubBestsellers02Fragment
 import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
 import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeFragment
@@ -17,23 +19,20 @@ class BestsellersViewModel(application: Application) : AndroidViewModel(applicat
     val fragmentListLiveData = MutableLiveData<List<Fragment>>()
     val tabTitlesLiveData = MutableLiveData<List<String>>()
 
-    // 適配器 LiveData
-    val adapterLiveData = MutableLiveData<BaseHomePagerAdapter>()
-
     init {
 
         // 初始化 Fragment 列表和 Tab 標題
         val fragments = listOf(
-            HomeFragment(),
-            CartFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment()
+            SubBestsellers01Fragment(),
+            SubBestsellers02Fragment(),
+            SubBestsellers01Fragment(),
+            SubBestsellers02Fragment(),
+            SubBestsellers01Fragment(),
+            SubBestsellers02Fragment(),
+            SubBestsellers01Fragment(),
+            SubBestsellers02Fragment(),
+            SubBestsellers01Fragment(),
+            SubBestsellers02Fragment()
         )// 模擬 10 個 HomeFragment
 
         val tabTitles = homeRepository.getTabTitles()
