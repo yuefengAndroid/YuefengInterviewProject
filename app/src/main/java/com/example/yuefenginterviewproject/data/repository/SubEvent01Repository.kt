@@ -34,6 +34,30 @@ class SubEvent01Repository {
         })
     }
 
+    fun getSubHot2Data(task: OnSubHotFinish) {
+        val myTreasureBoxList = mutableListOf<SubHotEntity>()
+        dbReference = FirebaseDatabase.getInstance().getReference("Data")
+        dbReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (item in snapshot.child("HotEvent1").children) {
+                        val activityBannerItems = item.key
+                        val entity = snapshot.child("HotEvent1").child(activityBannerItems.toString())
+                            .getValue(SubHotEntity::class.java)
+                        if (entity != null) {
+                            myTreasureBoxList.add(entity)
+                        }
+                    }
+                    task.onFinish(myTreasureBoxList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
     interface OnSubHotFinish {
         fun onFinish(subHotEntity: MutableList<SubHotEntity>)
     }

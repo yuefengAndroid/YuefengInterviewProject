@@ -9,6 +9,7 @@ import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
 import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeFragment
 import com.example.yuefenginterviewproject.ui.popularactivities.subview2.SubEvent01Fragment
+import com.example.yuefenginterviewproject.ui.popularactivities.subview2.SubEvent02Fragment
 
 class PopularactivitiesViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -18,23 +19,20 @@ class PopularactivitiesViewModel(application: Application) : AndroidViewModel(ap
     val fragmentListLiveData3 = MutableLiveData<List<Fragment>>()
     val tabTitlesLiveData3 = MutableLiveData<List<String>>()
 
-    // 適配器 LiveData
-    val adapterLiveData = MutableLiveData<BaseHomePagerAdapter>()
-
     init {
 
         // 初始化 Fragment 列表和 Tab 標題
         val fragments = listOf(
             SubEvent01Fragment(),
-            CartFragment(),
+            SubEvent02Fragment(),
             SubEvent01Fragment(),
-            HomeFragment(),
+            SubEvent02Fragment(),
             SubEvent01Fragment(),
-            HomeFragment(),
+            SubEvent02Fragment(),
             SubEvent01Fragment(),
-            HomeFragment(),
+            SubEvent02Fragment(),
             SubEvent01Fragment(),
-            HomeFragment()
+            SubEvent02Fragment()
         )// 模擬 10 個 HomeFragment
 
         val tabTitles = homeRepository.getTabTitles()
