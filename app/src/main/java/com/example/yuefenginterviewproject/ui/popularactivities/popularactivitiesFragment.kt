@@ -22,7 +22,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class popularactivitiesFragment : Fragment() {
     private lateinit var binding: FragmentPopularactivitiesBinding
     private val baseHomeModel: PopularactivitiesViewModel by lazy {
-        ViewModelProvider(this).get(PopularactivitiesViewModel::class.java) // 初始化 ViewModel
+        ViewModelProvider(this)[PopularactivitiesViewModel::class.java] // 初始化 ViewModel
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

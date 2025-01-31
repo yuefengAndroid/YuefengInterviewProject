@@ -8,6 +8,7 @@ import com.example.yuefenginterviewproject.data.repository.popularactivitiesRepo
 import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
 import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeFragment
+import com.example.yuefenginterviewproject.ui.popularactivities.subview2.SubEvent01Fragment
 
 class PopularactivitiesViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -24,15 +25,15 @@ class PopularactivitiesViewModel(application: Application) : AndroidViewModel(ap
 
         // 初始化 Fragment 列表和 Tab 標題
         val fragments = listOf(
-            HomeFragment(),
+            SubEvent01Fragment(),
             CartFragment(),
+            SubEvent01Fragment(),
             HomeFragment(),
+            SubEvent01Fragment(),
             HomeFragment(),
+            SubEvent01Fragment(),
             HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment(),
+            SubEvent01Fragment(),
             HomeFragment()
         )// 模擬 10 個 HomeFragment
 
