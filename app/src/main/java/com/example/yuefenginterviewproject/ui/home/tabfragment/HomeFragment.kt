@@ -8,6 +8,7 @@ import android.widget.RadioButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.HomeViewModel
@@ -20,6 +21,7 @@ class HomeFragment : Fragment() {
         ViewModelProvider(this)[HomeViewModel::class.java] // 初始化 ViewModel
     }
     private lateinit var adapter: HomeBanner2Adapter
+    private lateinit var adapter3: HomeBanner3Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +56,9 @@ class HomeFragment : Fragment() {
         }
 
         baseHomeModel.homeBannerList.observe(viewLifecycleOwner) { bannerList ->
+            val firstThreeItems = bannerList.take(3)
             adapter.setList(bannerList) // 更新 RecyclerView 資料
+            adapter3.setList(firstThreeItems)
         }
     }
 
@@ -63,6 +67,13 @@ class HomeFragment : Fragment() {
         binding.banner2RecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false) // 設置為橫向
             adapter = this@HomeFragment.adapter
+            overScrollMode = View.OVER_SCROLL_NEVER // 防止滾動時出現反彈效果
+        }
+
+        adapter3 = HomeBanner3Adapter(this, arrayListOf()) // 初始化时传入空列表
+        binding.banner3RecyclerView.apply {
+            layoutManager  = GridLayoutManager(requireContext(), 3) // 設置為 3 列
+            adapter = this@HomeFragment.adapter3
             overScrollMode = View.OVER_SCROLL_NEVER // 防止滾動時出現反彈效果
         }
     }
@@ -78,6 +89,11 @@ class HomeFragment : Fragment() {
 
                 binding.viewBg.setBackgroundResource(R.drawable.bg_home_hour_sale_bottom_active)
                 binding.timerSeconds.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_cc1e05))
+
+                baseHomeModel.homeBannerList.value?.let { bannerList ->
+                    val firstThreeItems = bannerList.take(3)  // 取前 3 筆資料
+                    adapter3.setList(firstThreeItems)
+                }
             }
             R.id.rb_global -> {
                 binding.rbTime.translationZ = 0f
@@ -87,6 +103,11 @@ class HomeFragment : Fragment() {
 
                 binding.viewBg.setBackgroundResource(R.drawable.bg_home_global_hoursale_bottom_active)
                 binding.timerSeconds.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_fe5a0a))
+                // 只顯示第 4 到第 6 筆
+                baseHomeModel.homeBannerList.value?.let { bannerList ->
+                    val items4to6 = bannerList.drop(3).take(3)  // 取第 4 到第 6 筆資料
+                    adapter3.setList(items4to6)
+                }
             }
             R.id.rb_shop -> {
                 binding.rbTime.translationZ = 1f
@@ -96,6 +117,11 @@ class HomeFragment : Fragment() {
 
                 binding.viewBg.setBackgroundResource(R.drawable.bg_home_shop_hour_sale_bottom_active)
                 binding.timerSeconds.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_007ae6))
+                // 只顯示第 6 到第 8 筆
+                baseHomeModel.homeBannerList.value?.let { bannerList ->
+                    val items6to8 = bannerList.drop(5).take(3)  // 取第 6 到第 8 筆資料
+                    adapter3.setList(items6to8)
+                }
             }
         }
     }

@@ -12,11 +12,10 @@ import com.bumptech.glide.Glide
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.entity.HomeBannerEntity
 
-
-class HomeBanner2Adapter (val frag: Fragment, var list: ArrayList<HomeBannerEntity>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeBanner3Adapter (val frag: Fragment, var list: ArrayList<HomeBannerEntity>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder(LayoutInflater.from(frag.context).inflate(R.layout.item_home_banner02, parent, false))
+        return ViewHolder(LayoutInflater.from(frag.context).inflate(R.layout.item_home_banner03, parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -35,14 +34,14 @@ class HomeBanner2Adapter (val frag: Fragment, var list: ArrayList<HomeBannerEnti
     }
 
     private inner class ViewHolder(pContentView: View) : RecyclerView.ViewHolder(pContentView) {
-        private val ivProd: ImageView = pContentView.findViewById(R.id.subItem01)
-        private val tvTitle01: TextView = pContentView.findViewById(R.id.text1)
-        private val tvTitle02: TextView = pContentView.findViewById(R.id.text2)
+        private val ivProd: ImageView = pContentView.findViewById(R.id.qfItem01)
+        private val tvTitle01: TextView = pContentView.findViewById(R.id.itemStr01)
+        private val tvTitle02: TextView = pContentView.findViewById(R.id.itemStr02)
 
 
         fun bind(data: HomeBannerEntity) {
-            tvTitle01.text = data.Text1
-            tvTitle02.text = data.Text2
+            tvTitle01.text = data.Title
+            tvTitle02.text = data.Money
             if (frag.isAdded) {
                 Glide.with(frag)
                     .load(data.ImgUrl)
