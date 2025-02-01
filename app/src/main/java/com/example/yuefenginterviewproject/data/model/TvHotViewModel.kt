@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.yuefenginterviewproject.data.repository.TvHotRepository
-import com.example.yuefenginterviewproject.ui.cart.CartFragment
-import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
-import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeFragment
 import com.example.yuefenginterviewproject.ui.tvhot.tvsubview.TvSub01Fragment
+import com.example.yuefenginterviewproject.ui.tvhot.tvsubview.TvSub02Fragment
+import com.example.yuefenginterviewproject.ui.tvhot.tvsubview.TvSub03Fragment
 
 class TvHotViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -18,18 +17,15 @@ class TvHotViewModel(application: Application) : AndroidViewModel(application) {
     val fragmentListLiveData4 = MutableLiveData<List<Fragment>>()
     val tabTitlesLiveData4 = MutableLiveData<List<String>>()
 
-    // 適配器 LiveData
-    val adapterLiveData = MutableLiveData<BaseHomePagerAdapter>()
-
     init {
 
         // 初始化 Fragment 列表和 Tab 標題
         val fragments = listOf(
             TvSub01Fragment(),
-            CartFragment(),
-            HomeFragment(),
-            HomeFragment(),
-            HomeFragment()
+            TvSub02Fragment(),
+            TvSub03Fragment(),
+            TvSub01Fragment(),
+            TvSub02Fragment()
         )// 模擬 5 個 HomeFragment
 
         val tabTitles = homeRepository.getTabTitles()
