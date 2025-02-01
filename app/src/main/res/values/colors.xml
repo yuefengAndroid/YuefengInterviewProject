@@ -45,8 +45,11 @@
     <color name="magenta">#FF00FF</color><!--紅紫色 -->
     <color name="custom_pink">#FFC0CB</color>
     <color name="orange_FF9797">#FF9797</color>
+    <color name="color_ffbb99">#ffbb99</color>
     <color name="orange_FFBD9D">#FFBD9D</color>
     <color name="orange_FFDAC8">#FFDAC8</color>
+    <color name="orange_FFEFEF">#FFEFEF</color>
+    <color name="color_ffcce2">#ffcce2</color>
     <color name="color_99000000">#99000000</color>
     <color name="blue_2828FF">#2828FF</color>
     <color name="blue_000093">#000093</color>

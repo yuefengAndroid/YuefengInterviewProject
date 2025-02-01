@@ -1,33 +1,38 @@
 package com.example.yuefenginterviewproject.ui.home.tabfragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.yuefenginterviewproject.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.yuefenginterviewproject.data.model.HomeViewModel
+import com.example.yuefenginterviewproject.databinding.FragmentHomeBinding
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class HomeFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private lateinit var binding: FragmentHomeBinding
+    private val baseHomeModel: HomeViewModel by lazy {
+        ViewModelProvider(this)[HomeViewModel::class.java] // 初始化 ViewModel
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        binding = FragmentHomeBinding.inflate(inflater,container,false)
+        binding.lifecycleOwner = viewLifecycleOwner // 設定 DataBinding 的生命周期擁有者
+        binding.homeModel = baseHomeModel // 將 ViewModel 綁定到 Binding
+
+        observeData()  // 監聽 LiveData
+        return binding.root
     }
 
+    private fun observeData() {
+        baseHomeModel.mySubHotList.observe(viewLifecycleOwner) { itemList ->
+            // 讓 Banner Adapter 更新數據
+            binding.homePopularAdsBanner.adapter?.let { adapter ->
+                (adapter as HomeAdBannerItemAdapter).setList(itemList, baseHomeModel)
+            }
+        }
+    }
 }
