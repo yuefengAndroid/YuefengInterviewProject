@@ -8,6 +8,7 @@ import com.example.yuefenginterviewproject.data.repository.TvHotRepository
 import com.example.yuefenginterviewproject.ui.cart.CartFragment
 import com.example.yuefenginterviewproject.ui.home.BaseHomePagerAdapter
 import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeFragment
+import com.example.yuefenginterviewproject.ui.tvhot.tvsubview.TvSub01Fragment
 
 class TvHotViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -24,7 +25,7 @@ class TvHotViewModel(application: Application) : AndroidViewModel(application) {
 
         // 初始化 Fragment 列表和 Tab 標題
         val fragments = listOf(
-            HomeFragment(),
+            TvSub01Fragment(),
             CartFragment(),
             HomeFragment(),
             HomeFragment(),
