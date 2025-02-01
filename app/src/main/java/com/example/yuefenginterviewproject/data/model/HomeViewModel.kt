@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.example.yuefenginterviewproject.BaseScaleInTransformer
 import com.example.yuefenginterviewproject.R
+import com.example.yuefenginterviewproject.data.entity.HomeBannerEntity
 import com.example.yuefenginterviewproject.data.entity.SubHotEntity
 import com.example.yuefenginterviewproject.data.repository.HomeRepository
 import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeAdBannerItemAdapter
@@ -27,13 +28,24 @@ class HomeViewModel(application: Application) :
     private val _mySubHotList = MutableLiveData<MutableList<SubHotEntity>>()
     val mySubHotList: LiveData<MutableList<SubHotEntity>> get() = _mySubHotList
 
+    private val _homeBannerList = MutableLiveData<MutableList<HomeBannerEntity>>()
+    val homeBannerList: LiveData<MutableList<HomeBannerEntity>> get() = _homeBannerList
+
     init {
 
-
+        //首頁輪播
         homeRepository.getSubHotData(object : HomeRepository.OnSubHotFinish {
             override fun onFinish(subHotEntity: MutableList<SubHotEntity>) {
                 _mySubHotList.postValue(subHotEntity)
             }
+        })
+
+        //第二排資料
+        homeRepository.getHomeBannerData(object : HomeRepository.OnHomeBannerFinish{
+            override fun onFinish(homeBannerEntity: MutableList<HomeBannerEntity>) {
+                _homeBannerList.postValue(homeBannerEntity)
+            }
+
         })
     }
 

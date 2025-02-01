@@ -1,6 +1,6 @@
 package com.example.yuefenginterviewproject.data.repository
 
-import com.example.yuefenginterviewproject.data.entity.StoreCouponEntity
+import com.example.yuefenginterviewproject.data.entity.HomeBannerEntity
 import com.example.yuefenginterviewproject.data.entity.SubHotEntity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -12,24 +12,23 @@ class HomeRepository {
     lateinit var dbReference: DatabaseReference
 
     //廣告輪播
-    fun getAdBannerData(task: MemberRepository.OnActivityBannerFinish) {
-        val adBannerList = mutableListOf<StoreCouponEntity>()
+    fun getHomeBannerData(task: OnHomeBannerFinish) {
+        val adBannerList = mutableListOf<HomeBannerEntity>()
 
         dbReference = FirebaseDatabase.getInstance().getReference("Data")
 
         dbReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    for (item in snapshot.child("ActivityBanner").children) {
+                    for (item in snapshot.child("HomeBanner02").children) {
                         val activityBannerItems = item.key
                         val entity =
-                            snapshot.child("ActivityBanner").child(activityBannerItems.toString())
-                                .getValue(StoreCouponEntity::class.java)
+                            snapshot.child("HomeBanner02").child(activityBannerItems.toString())
+                                .getValue(HomeBannerEntity::class.java)
                         if (entity != null) {
                             adBannerList.add(entity)
                         }
                     }
-                    adBannerList.sortedBy { it.num }
                     task.onFinish(adBannerList)
                 }
             }
@@ -69,7 +68,7 @@ class HomeRepository {
         fun onFinish(subHotEntity: MutableList<SubHotEntity>)
     }
 
-    interface OnActivityBannerFinish {
-        fun onFinish(storeCouponEntity: MutableList<StoreCouponEntity>)
+    interface OnHomeBannerFinish {
+        fun onFinish(homeBannerEntity: MutableList<HomeBannerEntity>)
     }
 }
