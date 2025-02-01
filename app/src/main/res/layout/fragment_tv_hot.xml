@@ -132,21 +132,47 @@
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchBg"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/searchBg" />
+
+        <TextView
+            android:id="@+id/headTitle01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:text="現正播出"
+            android:textColor="@color/color_84827f"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBg" />
+
+        <ImageView
+            android:id="@+id/iconTvimg"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/tv0007"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/homeTabLayout4"
+            app:layout_constraintTop_toBottomOf="@+id/headTitle01"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/homeTabLayout4"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="45dp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintLeft_toRightOf="@+id/iconTvimg"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchBg"
+            app:layout_constraintTop_toBottomOf="@+id/headTitle01"
             app:tabGravity="center"
             app:tabIndicatorColor="@color/red"
-            app:tabMode="scrollable"
+            app:tabMode="fixed"
             app:tabSelectedTextColor="@color/red"
             app:tabTextColor="@color/black" />
 
