@@ -1,6 +1,8 @@
 package com.example.yuefenginterviewproject.ui.home.tabfragment
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,27 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: HomeBanner2Adapter
     private lateinit var adapter3: HomeBanner3Adapter
     private lateinit var adapter5: HomeBanner5Adapter
+    private lateinit var adapter7: HomeBanner5Adapter
+
+    private var banner7Position = 3 // 初始位置 (顯示第 3 個 item)
+    private val handler = Handler(Looper.getMainLooper())
+    private val autoScrollRunnable = object : Runnable {
+        override fun run() {
+            val itemCount = adapter7.itemCount
+            if (itemCount > 0) {
+                banner7Position++
+
+                // 若滾動到最後一個 item，則回到第一個 item
+                if (banner7Position >= itemCount) {
+                    banner7Position = 0
+                    binding.banner7RecyclerView.scrollToPosition(banner7Position) // 直接滾回第一個
+                } else {
+                    binding.banner7RecyclerView.smoothScrollToPosition(banner7Position) // 平滑滾動
+                }
+            }
+            handler.postDelayed(this, 1000) // 每秒滾動一次
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,26 +57,8 @@ class HomeFragment : Fragment() {
 
         observeData()  // 監聽 LiveData
         setupRecyclerView() // 初始化 RecyclerView
-
-        val radioButtons = listOf(binding.rbTime, binding.rbGlobal, binding.rbShop)
-
-        radioButtons.forEach { button ->
-            button.setOnClickListener {
-                radioButtons.forEach { it.isChecked = false } // 先把全部設為 false
-                button.isChecked = true // 只讓當前點擊的為 true
-                setButtonStatus(button)
-            }
-        }
-
-        val radioButtons2 = listOf(binding.rbTime2, binding.rbGlobal2)
-        radioButtons2.forEach { button2 ->
-            button2.setOnClickListener {
-                radioButtons2.forEach { it.isChecked = false } // 先把全部設為 false
-                button2.isChecked = true // 只讓當前點擊的為 true
-                setButtonStatus(button2)
-            }
-        }
-
+        setupRadioButtons()
+        setupAutoScroll()
         return binding.root
     }
 
@@ -71,12 +76,21 @@ class HomeFragment : Fragment() {
             adapter.setList(bannerList) // 更新 RecyclerView 資料
             adapter3.setList(firstThreeItems)
             adapter5.setList(firstThreeItems2)
+            adapter7.setList(bannerList)
+
         }
 
         baseHomeModel.homeBanner4List.observe(viewLifecycleOwner) { itemList ->
             // 讓 Banner Adapter 更新數據
             binding.homeAdBanner04.adapter?.let { adapter ->
                 (adapter as HomeBanne4Adapter).setList(itemList, baseHomeModel)
+            }
+        }
+
+        baseHomeModel.homeBanner6List.observe(viewLifecycleOwner) { itemList ->
+            // 讓 Banner Adapter 更新數據
+            binding.homePopularAdsBanner.adapter?.let { adapter ->
+                (adapter as HomeAdBannerItemAdapter).setList(itemList, baseHomeModel)
             }
         }
     }
@@ -102,6 +116,35 @@ class HomeFragment : Fragment() {
             adapter = this@HomeFragment.adapter5
             overScrollMode = View.OVER_SCROLL_NEVER // 防止滾動時出現反彈效果
         }
+
+        adapter7 = HomeBanner5Adapter(this, arrayListOf()) // 初始化时传入空列表
+        binding.banner7RecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = this@HomeFragment.adapter7
+            overScrollMode = View.OVER_SCROLL_NEVER // 防止滾動時出現反彈效果
+        }
+
+    }
+
+    private fun setupRadioButtons() {
+        val radioButtons = listOf(binding.rbTime, binding.rbGlobal, binding.rbShop)
+        radioButtons.forEach { button ->
+            button.setOnClickListener {
+                radioButtons.forEach { it.isChecked = false } // 先把全部設為 false
+                button.isChecked = true // 只讓當前點擊的為 true
+                setButtonStatus(button)
+            }
+        }
+
+        val radioButtons2 = listOf(binding.rbTime2, binding.rbGlobal2)
+        radioButtons2.forEach { button2 ->
+            button2.setOnClickListener {
+                radioButtons2.forEach { it.isChecked = false } // 先把全部設為 false
+                button2.isChecked = true // 只讓當前點擊的為 true
+                setButtonStatus(button2)
+            }
+        }
+
     }
 
     // 設定按鈕狀態
@@ -173,4 +216,14 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+    private fun setupAutoScroll() {
+        handler.postDelayed(autoScrollRunnable, 1000) // 啟動自動滾動，每秒執行一次
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        handler.removeCallbacks(autoScrollRunnable) // 避免 Fragment 銷毀後還在執行滾動
+    }
+
 }

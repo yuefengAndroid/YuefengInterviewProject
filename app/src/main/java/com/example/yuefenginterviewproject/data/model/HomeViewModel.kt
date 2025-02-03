@@ -35,6 +35,9 @@ class HomeViewModel(application: Application) :
     private val _homeBanner4List = MutableLiveData<MutableList<SubHotEntity>>()
     val homeBanner4List: LiveData<MutableList<SubHotEntity>> get() = _homeBanner4List
 
+    private val _homeBanner6List = MutableLiveData<MutableList<SubHotEntity>>()
+    val homeBanner6List: LiveData<MutableList<SubHotEntity>> get() = _homeBanner6List
+
     init {
 
         //首頁輪播
@@ -52,10 +55,17 @@ class HomeViewModel(application: Application) :
 
         })
 
-        //第4個輪播
+        //第4個輪播(東森直播上面的輪播)
         homeRepository.getBanner04Data(object : HomeRepository.OnBanner04Finish {
             override fun onFinish(subHotEntity: MutableList<SubHotEntity>) {
                 _homeBanner4List.postValue(subHotEntity)
+            }
+        })
+
+        //全球購下方輪播
+        homeRepository.getSubHotData(object : HomeRepository.OnSubHotFinish {
+            override fun onFinish(subHotEntity: MutableList<SubHotEntity>) {
+                _homeBanner6List.postValue(subHotEntity)
             }
         })
     }
@@ -123,6 +133,39 @@ class HomeViewModel(application: Application) :
                                 )
                             )
                             .setIndicatorSelectorColor(Color.BLACK), false
+                    )
+                banner.setPageMargin(0, 0).addPageTransformer(BaseScaleInTransformer())
+                banner.adapter = adapter
+            }
+
+            if (storeCouponEntityList != null) {
+                adapter.setList(storeCouponEntityList, homeViewModel)
+            }
+        }
+
+        @BindingAdapter("home_banner06_model", "home_banner06_adapter", "indicatorView06")
+        @JvmStatic
+        fun setAdBanner06(
+            bannerLayout: RelativeLayout?,
+            homeViewModel: HomeViewModel,
+            storeCouponEntityList: MutableList<SubHotEntity>?,
+            indicator: View
+        ) {
+            val banner = bannerLayout as Banner
+            var adapter = banner.adapter as? HomeAdBannerItemAdapter
+
+            if (adapter == null) {
+                adapter = HomeAdBannerItemAdapter()
+                banner.setAutoTurningTime(2000)
+                    .setIndicator(
+                        (indicator.findViewById<IndicatorView>(R.id.indicator06))
+                            .setIndicatorColor(
+                                ContextCompat.getColor(
+                                    bannerLayout.context,
+                                    R.color.gray_cccccc
+                                )
+                            )
+                            .setIndicatorSelectorColor(Color.GRAY), false
                     )
                 banner.setPageMargin(0, 0).addPageTransformer(BaseScaleInTransformer())
                 banner.adapter = adapter
