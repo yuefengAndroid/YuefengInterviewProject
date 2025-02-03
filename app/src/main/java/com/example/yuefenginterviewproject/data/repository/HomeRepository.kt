@@ -1,6 +1,7 @@
 package com.example.yuefenginterviewproject.data.repository
 
 import com.example.yuefenginterviewproject.data.entity.HomeBannerEntity
+import com.example.yuefenginterviewproject.data.entity.ProductsEntity
 import com.example.yuefenginterviewproject.data.entity.SubHotEntity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -93,11 +94,39 @@ class HomeRepository {
         fun onFinish(subHotEntity: MutableList<SubHotEntity>)
     }
 
+    fun getHomeLastData(task: OnProductsFinish) {
+        val myTreasureBoxList = mutableListOf<ProductsEntity>()
+        dbReference = FirebaseDatabase.getInstance().getReference("Data")
+        dbReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (item in snapshot.child("product").children) {
+                        val activityBannerItems = item.key
+                        val entity = snapshot.child("product").child(activityBannerItems.toString())
+                            .getValue(ProductsEntity::class.java)
+                        if (entity != null) {
+                            myTreasureBoxList.add(entity)
+                        }
+                    }
+                    task.onFinish(myTreasureBoxList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
     interface OnBanner04Finish {
         fun onFinish(subHotEntity: MutableList<SubHotEntity>)
     }
 
     interface OnHomeBannerFinish {
         fun onFinish(homeBannerEntity: MutableList<HomeBannerEntity>)
+    }
+
+    interface OnProductsFinish {
+        fun onFinish(productsEntity: MutableList<ProductsEntity>)
     }
 }

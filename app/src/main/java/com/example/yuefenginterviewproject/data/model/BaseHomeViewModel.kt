@@ -25,7 +25,7 @@ class BaseHomeViewModel(application: Application) : AndroidViewModel(application
         // 初始化 Fragment 列表和 Tab 標題
         val fragments = listOf(
             HomeFragment(),
-            CartFragment(),
+            HomeFragment(),
             HomeFragment(),
             HomeFragment(),
             HomeFragment(),

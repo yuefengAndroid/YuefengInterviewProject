@@ -15,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.example.yuefenginterviewproject.BaseScaleInTransformer
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.entity.HomeBannerEntity
+import com.example.yuefenginterviewproject.data.entity.ProductsEntity
 import com.example.yuefenginterviewproject.data.entity.SubHotEntity
 import com.example.yuefenginterviewproject.data.repository.HomeRepository
 import com.example.yuefenginterviewproject.ui.home.tabfragment.HomeAdBannerItemAdapter
@@ -38,6 +39,10 @@ class HomeViewModel(application: Application) :
     private val _homeBanner6List = MutableLiveData<MutableList<SubHotEntity>>()
     val homeBanner6List: LiveData<MutableList<SubHotEntity>> get() = _homeBanner6List
 
+
+    private val _homeLastList = MutableLiveData<MutableList<ProductsEntity>>()
+    val homeLastList: LiveData<MutableList<ProductsEntity>> get() = _homeLastList
+
     init {
 
         //首頁輪播
@@ -48,7 +53,7 @@ class HomeViewModel(application: Application) :
         })
 
         //第二排資料
-        homeRepository.getHomeBannerData(object : HomeRepository.OnHomeBannerFinish{
+        homeRepository.getHomeBannerData(object : HomeRepository.OnHomeBannerFinish {
             override fun onFinish(homeBannerEntity: MutableList<HomeBannerEntity>) {
                 _homeBannerList.postValue(homeBannerEntity)
             }
@@ -66,6 +71,13 @@ class HomeViewModel(application: Application) :
         homeRepository.getSubHotData(object : HomeRepository.OnSubHotFinish {
             override fun onFinish(subHotEntity: MutableList<SubHotEntity>) {
                 _homeBanner6List.postValue(subHotEntity)
+            }
+        })
+
+        //專屬推薦
+        homeRepository.getHomeLastData(object : HomeRepository.OnProductsFinish {
+            override fun onFinish(productsEntity: MutableList<ProductsEntity>) {
+                _homeLastList.postValue(productsEntity)
             }
         })
     }

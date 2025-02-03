@@ -1,5 +1,6 @@
 package com.example.yuefenginterviewproject.ui.home.tabfragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yuefenginterviewproject.R
 import com.example.yuefenginterviewproject.data.model.HomeViewModel
 import com.example.yuefenginterviewproject.databinding.FragmentHomeBinding
+import com.example.yuefenginterviewproject.ui.tvhot.tvsubview.TvSubAdapter
 
 
 class HomeFragment : Fragment() {
@@ -26,6 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter3: HomeBanner3Adapter
     private lateinit var adapter5: HomeBanner5Adapter
     private lateinit var adapter7: HomeBanner5Adapter
+    private lateinit var lastAdapter: HomeLastAdapter
 
     private var banner7Position = 3 // 初始位置 (顯示第 3 個 item)
     private val handler = Handler(Looper.getMainLooper())
@@ -62,6 +65,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun observeData() {
         baseHomeModel.mySubHotList.observe(viewLifecycleOwner) { itemList ->
             // 讓 Banner Adapter 更新數據
@@ -87,12 +91,10 @@ class HomeFragment : Fragment() {
             }
         }
 
-        baseHomeModel.homeBanner6List.observe(viewLifecycleOwner) { itemList ->
-            // 讓 Banner Adapter 更新數據
-            binding.homePopularAdsBanner.adapter?.let { adapter ->
-                (adapter as HomeAdBannerItemAdapter).setList(itemList, baseHomeModel)
-            }
+        baseHomeModel.homeLastList.observe(viewLifecycleOwner) { productList ->
+            lastAdapter.setList(productList) // 更新 HomeLastAdapter 資料
         }
+
     }
 
     private fun setupRecyclerView() {
@@ -124,6 +126,11 @@ class HomeFragment : Fragment() {
             overScrollMode = View.OVER_SCROLL_NEVER // 防止滾動時出現反彈效果
         }
 
+        lastAdapter = HomeLastAdapter(this, arrayListOf()) // 初始化 HomeLastAdapter
+        binding.lastRecyclerView.apply {
+            layoutManager =  GridLayoutManager(requireContext(), 2)
+            adapter = lastAdapter
+        }
     }
 
     private fun setupRadioButtons() {
