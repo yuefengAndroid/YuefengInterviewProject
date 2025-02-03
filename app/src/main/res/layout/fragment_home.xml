@@ -273,7 +273,7 @@
                     android:id="@+id/view_bg"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/bg_home_hour_sale_bottom_active"
                     android:translationZ="1dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -428,6 +428,108 @@
                 app:layout_constraintTop_toBottomOf="@+id/cl_tab_item"
                 tools:itemCount="1"
                 tools:listitem="@layout/item_home_banner03"/>
+
+            <com.to.aboomy.pager2banner.Banner
+                android:id="@+id/homeAdBanner04"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                app:home_banner04_adapter="@{homeModel.homeBanner4List}"
+                app:home_banner04_model="@{homeModel}"
+                app:indicatorView04="@{indicator04}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/banner3RecyclerView" />
+
+            <com.to.aboomy.pager2banner.IndicatorView
+                android:id="@+id/indicator04"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/homeAdBanner04"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_tab_item2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_f7f7f7"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/indicator04">
+
+                <RadioButton
+                    android:id="@+id/rb_time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp"
+                    android:background="@drawable/hourly_time_change_img"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableRight="@drawable/selector_hourly_time_change_icon"
+                    android:paddingStart="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="36dp"
+                    android:text="東森直播"
+                    android:textColor="@drawable/hourly_change_text_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:translationZ="2dp"
+                    app:buttonCompat="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioButton
+                    android:id="@+id/rb_global2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp"
+                    android:layout_marginStart="-36dp"
+                    android:background="@drawable/hourly_global_change_img"
+                    android:button="@null"
+                    android:drawableRight="@drawable/selector_hourly_global_change_icon"
+                    android:paddingStart="32dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="36dp"
+                    android:text="萌寵直播"
+                    android:textColor="@drawable/hourly_change_text_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:translationZ="1dp"
+                    app:buttonCompat="@null"
+                    app:layout_constraintStart_toEndOf="@+id/rb_time2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_ffffff_radius16"
+                    android:padding="4dp"
+                    android:textSize="14sp"
+                    android:text="更多直播>"
+                    android:textColor="@color/color_5d5d5d"
+                    app:layout_constraintTop_toTopOf="@+id/rb_global2"
+                    app:layout_constraintBottom_toBottomOf="@+id/rb_global2"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+                 <androidx.recyclerview.widget.RecyclerView
+                     android:id="@+id/banner5RecyclerView"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:background="@color/color_FFB3FF"
+                     android:overScrollMode="never"
+                     app:layout_constraintLeft_toLeftOf="parent"
+                     app:layout_constraintRight_toRightOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/rb_time2"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

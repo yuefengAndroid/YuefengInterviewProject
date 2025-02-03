@@ -64,7 +64,36 @@ class HomeRepository {
         })
     }
 
+    fun getBanner04Data(task: OnBanner04Finish) {
+        val myTreasureBoxList = mutableListOf<SubHotEntity>()
+        dbReference = FirebaseDatabase.getInstance().getReference("Data")
+        dbReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (item in snapshot.child("HomeBanner03").children) {
+                        val activityBannerItems = item.key
+                        val entity =
+                            snapshot.child("HomeBanner03").child(activityBannerItems.toString())
+                                .getValue(SubHotEntity::class.java)
+                        if (entity != null) {
+                            myTreasureBoxList.add(entity)
+                        }
+                    }
+                    task.onFinish(myTreasureBoxList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
     interface OnSubHotFinish {
+        fun onFinish(subHotEntity: MutableList<SubHotEntity>)
+    }
+
+    interface OnBanner04Finish {
         fun onFinish(subHotEntity: MutableList<SubHotEntity>)
     }
 

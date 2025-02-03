@@ -22,6 +22,7 @@ class HomeFragment : Fragment() {
     }
     private lateinit var adapter: HomeBanner2Adapter
     private lateinit var adapter3: HomeBanner3Adapter
+    private lateinit var adapter5: HomeBanner5Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +45,15 @@ class HomeFragment : Fragment() {
             }
         }
 
+        val radioButtons2 = listOf(binding.rbTime2, binding.rbGlobal2)
+        radioButtons2.forEach { button2 ->
+            button2.setOnClickListener {
+                radioButtons2.forEach { it.isChecked = false } // 先把全部設為 false
+                button2.isChecked = true // 只讓當前點擊的為 true
+                setButtonStatus(button2)
+            }
+        }
+
         return binding.root
     }
 
@@ -57,8 +67,17 @@ class HomeFragment : Fragment() {
 
         baseHomeModel.homeBannerList.observe(viewLifecycleOwner) { bannerList ->
             val firstThreeItems = bannerList.take(3)
+            val firstThreeItems2 = bannerList.take(5)
             adapter.setList(bannerList) // 更新 RecyclerView 資料
             adapter3.setList(firstThreeItems)
+            adapter5.setList(firstThreeItems2)
+        }
+
+        baseHomeModel.homeBanner4List.observe(viewLifecycleOwner) { itemList ->
+            // 讓 Banner Adapter 更新數據
+            binding.homeAdBanner04.adapter?.let { adapter ->
+                (adapter as HomeBanne4Adapter).setList(itemList, baseHomeModel)
+            }
         }
     }
 
@@ -74,6 +93,13 @@ class HomeFragment : Fragment() {
         binding.banner3RecyclerView.apply {
             layoutManager  = GridLayoutManager(requireContext(), 3) // 設置為 3 列
             adapter = this@HomeFragment.adapter3
+            overScrollMode = View.OVER_SCROLL_NEVER // 防止滾動時出現反彈效果
+        }
+
+        adapter5 = HomeBanner5Adapter(this, arrayListOf()) // 初始化时传入空列表
+        binding.banner5RecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = this@HomeFragment.adapter5
             overScrollMode = View.OVER_SCROLL_NEVER // 防止滾動時出現反彈效果
         }
     }
@@ -121,6 +147,28 @@ class HomeFragment : Fragment() {
                 baseHomeModel.homeBannerList.value?.let { bannerList ->
                     val items6to8 = bannerList.drop(5).take(3)  // 取第 6 到第 8 筆資料
                     adapter3.setList(items6to8)
+                }
+            }
+            R.id.rb_time2 -> {
+                binding.rbTime2.translationZ = 2f
+                binding.rbGlobal2.translationZ = 1f
+
+                binding.timerSeconds.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_FFB3FF))
+
+                baseHomeModel.homeBannerList.value?.let { bannerList ->
+                    val firstThreeItems = bannerList.take(5)  // 取前 3 筆資料
+                    adapter5.setList(firstThreeItems)
+                }
+            }
+            R.id.rb_global2 -> {
+                binding.rbTime2.translationZ = 0f
+                binding.rbGlobal2.translationZ = 1f
+
+                binding.timerSeconds.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_fe5a0a))
+                // 只顯示第 4 到第 6 筆
+                baseHomeModel.homeBannerList.value?.let { bannerList ->
+                    val items6to8 = bannerList.drop(4).take(4)  // 取第 6 到第 8 筆資料
+                    adapter5.setList(items6to8)
                 }
             }
         }
