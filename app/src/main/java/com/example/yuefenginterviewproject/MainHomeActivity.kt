@@ -62,9 +62,7 @@ class MainHomeActivity : AppCompatActivity() {
                     tabText?.setTextColor(ContextCompat.getColor(this@MainHomeActivity, R.color.red)) // 設置紅色
 
                     val tabIcon = tab.customView?.findViewById<ImageView>(R.id.tab_icon)
-                    tabIcon?.let {
-                        it.setColorFilter(ContextCompat.getColor(this@MainHomeActivity, R.color.red)) // 設置紅色
-                    }
+                    tabIcon?.setColorFilter(ContextCompat.getColor(this@MainHomeActivity, R.color.red))
                 }
             }
 
@@ -73,14 +71,11 @@ class MainHomeActivity : AppCompatActivity() {
                 tabText?.setTextColor(ContextCompat.getColor(this@MainHomeActivity, R.color.black)) // 设置黑色
 
                 val tabIcon = tab.customView?.findViewById<ImageView>(R.id.tab_icon)
-                tabIcon?.let {
-                    it.setColorFilter(ContextCompat.getColor(this@MainHomeActivity, R.color.black)) // 设置黑色
-                }
+                tabIcon?.setColorFilter(ContextCompat.getColor(this@MainHomeActivity, R.color.black))
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
                 if (tab.position == 4) {
-                    // 如果重新选中购物车 Tab，重新跳转到 CartActivity
                     navigateToCartActivity()
                 }
             }
@@ -89,7 +84,6 @@ class MainHomeActivity : AppCompatActivity() {
     }
 
     private fun setupTabLayout() {
-        // 可选：自定义 TabLayout 的样式，例如选中时的文字颜色
         binding.tabLayout.apply {
             tabGravity = TabLayout.GRAVITY_FILL
             tabMode = TabLayout.MODE_FIXED
